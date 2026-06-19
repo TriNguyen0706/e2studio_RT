@@ -1,0 +1,320 @@
+{
+  "deviceModels" : [ {
+    "boardName" : "EK-RA4W1",
+    "id" : "eed88144-bcb3-42ee-97a3-40b0a4ea9734",
+    "mpn" : "R7FA4W1AD2CNG",
+    "peripherals" : [ {
+      "id" : "debug",
+      "instances" : [ {
+        "id" : "debug0",
+        "interfaceType" : "SYSTEM",
+        "modes" : [ {
+          "configurations" : [ {
+            "id" : "debug0.mode.jtag",
+            "parameters" : [ {
+              "name" : "fspConfigId",
+              "value" : "debug0.mode"
+            }, {
+              "name" : "fspDriverId",
+              "value" : "module.driver.ioport_on_ioport"
+            } ],
+            "pinConfigs" : [ {
+              "function" : "TCK",
+              "pinName" : "debug0.tck",
+              "pinValue" : "debug0.tck.p300",
+              "portName" : "P300"
+            }, {
+              "function" : "TDI",
+              "pinName" : "debug0.tdi",
+              "pinValue" : "debug0.tdi.p110",
+              "portName" : "P110"
+            }, {
+              "function" : "TDO",
+              "pinName" : "debug0.tdo",
+              "pinValue" : "debug0.tdo.p109",
+              "portName" : "P109"
+            }, {
+              "function" : "TMS",
+              "pinName" : "debug0.tms",
+              "pinValue" : "debug0.tms.p108",
+              "portName" : "P108"
+            } ],
+            "pinDependencyConfigs" : [ ]
+          } ],
+          "name" : "JTAG"
+        } ],
+        "name" : "DEBUG0",
+        "unit" : "0",
+        "virtualization" : "None"
+      } ],
+      "name" : "System:DEBUG"
+    } ],
+    "ports" : [ {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "AVCC0",
+        "peripheralInstance" : "analog0"
+      } ],
+      "id" : "avcc0",
+      "name" : "AVCC0",
+      "pin" : "35"
+    }, {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "AVSS0",
+        "peripheralInstance" : "analog0"
+      } ],
+      "id" : "avss0",
+      "name" : "AVSS0",
+      "pin" : "36"
+    }, {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "VCC",
+        "peripheralInstance" : "usbfs0"
+      } ],
+      "id" : "vccusb",
+      "name" : "VCCUSB",
+      "pin" : "5"
+    }, {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "VCCLDO",
+        "peripheralInstance" : "usbfs0"
+      } ],
+      "id" : "vccusbldo",
+      "name" : "VCCUSBLDO",
+      "pin" : "6"
+    }, {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "VSS",
+        "peripheralInstance" : "usbfs0"
+      } ],
+      "id" : "vssusb",
+      "name" : "VSSUSB",
+      "pin" : "2"
+    }, {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "ANT",
+        "peripheralInstance" : "radio0"
+      } ],
+      "id" : "ant",
+      "name" : "ANT",
+      "pin" : "30"
+    }, {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "AVDDRF",
+        "peripheralInstance" : "radio0"
+      } ],
+      "id" : "avddrf",
+      "name" : "AVDDRF",
+      "pin" : "39"
+    }, {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "FBIN",
+        "peripheralInstance" : "radio0"
+      } ],
+      "id" : "fbin",
+      "name" : "FBIN",
+      "pin" : "45"
+    }, {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "LX",
+        "peripheralInstance" : "radio0"
+      } ],
+      "id" : "lx",
+      "name" : "LX",
+      "pin" : "41"
+    }, {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "Q1",
+        "peripheralInstance" : "radio0"
+      } ],
+      "id" : "q1",
+      "name" : "Q1",
+      "pin" : "34"
+    }, {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "Q2",
+        "peripheralInstance" : "radio0"
+      } ],
+      "id" : "q2",
+      "name" : "Q2",
+      "pin" : "33"
+    }, {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "TEST0",
+        "peripheralInstance" : "radio0"
+      } ],
+      "id" : "test0",
+      "name" : "TEST0",
+      "pin" : "28"
+    }, {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "VDDDIG",
+        "peripheralInstance" : "radio0"
+      } ],
+      "id" : "vdddig",
+      "name" : "VDDDIG",
+      "pin" : "43"
+    }, {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "VDDRF",
+        "peripheralInstance" : "radio0"
+      } ],
+      "id" : "vddrf",
+      "name" : "VDDRF",
+      "pin" : "42"
+    }, {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "TCK",
+        "peripheralInstance" : "debug0"
+      } ],
+      "id" : "p300",
+      "name" : "P300",
+      "pin" : "13"
+    }, {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "TDI",
+        "peripheralInstance" : "debug0"
+      } ],
+      "id" : "p110",
+      "name" : "P110",
+      "pin" : "16"
+    }, {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "TDO",
+        "peripheralInstance" : "debug0"
+      } ],
+      "id" : "p109",
+      "name" : "P109",
+      "pin" : "15"
+    }, {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "TMS",
+        "peripheralInstance" : "debug0"
+      } ],
+      "id" : "p108",
+      "name" : "P108",
+      "pin" : "14"
+    }, {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "RES",
+        "peripheralInstance" : "system0"
+      } ],
+      "id" : "res",
+      "name" : "RES#",
+      "pin" : "10"
+    }, {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "VBATT",
+        "peripheralInstance" : "system0"
+      } ],
+      "id" : "vbatt",
+      "name" : "VBATT",
+      "pin" : "47"
+    }, {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "VCC",
+        "peripheralInstance" : "system0"
+      } ],
+      "id" : "vcc",
+      "name" : "VCC",
+      "pin" : "54"
+    }, {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "VCL",
+        "peripheralInstance" : "system0"
+      } ],
+      "id" : "vcl",
+      "name" : "VCL",
+      "pin" : "48"
+    }, {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "VSS",
+        "peripheralInstance" : "system0"
+      } ],
+      "id" : "vss",
+      "name" : "VSS",
+      "pin" : "51"
+    } ]
+  } ],
+  "hardwareModels" : [ {
+    "functionalBlockIds" : [ ],
+    "hardwareComponents" : [ {
+      "deviceModelId" : "eed88144-bcb3-42ee-97a3-40b0a4ea9734",
+      "id" : "7fe16be7-359d-411f-8686-0fd13135c57e",
+      "name" : "R7FA4W1AD2CNG",
+      "parameters" : [ ],
+      "sdmReferenceDesignator" : "HC-761190025"
+    } ],
+    "id" : "d4b22826-a645-45b9-a10d-856779ce63ae",
+    "sdmReferenceDesignator" : "HM-1147842789"
+  } ],
+  "id" : "843d095e-5e78-45a0-bf6d-7ccf2e5ccd4f",
+  "schemaVersion" : "v1.0.0",
+  "softwareModels" : [ {
+    "deviceModelId" : "eed88144-bcb3-42ee-97a3-40b0a4ea9734",
+    "id" : "6ca622ff-d07a-49c4-a984-a20930432010",
+    "implementedBy" : "grid:workspace:28fc0a94-413d-4d60-89e7-a2877f710be7:software:software-project/5E6599F5-8A58-4799-AD66-2167D617260C",
+    "name" : "ra_ex",
+    "sdmReferenceDesignator" : "SM1",
+    "softwareComponents" : [ ],
+    "softwareStackInstances" : [ {
+      "dependencyIds" : [ ],
+      "id" : "module.driver.ioport_on_ioport.0",
+      "name" : "g_ioport I/O Port (r_ioport)",
+      "parameters" : [ ],
+      "peripheralInstanceId" : "debug0",
+      "specification" : {
+        "ecosystem" : "FSP",
+        "name" : "I/O Port (r_ioport)",
+        "vendor" : "Renesas",
+        "version" : "6.5.0"
+      }
+    } ]
+  } ],
+  "version" : 1
+}
