@@ -1,0 +1,160 @@
+{
+  "deviceModels" : [ {
+    "boardName" : "EK-RA2E1",
+    "id" : "3abd56de-ed71-43bd-8244-64d4d6103685",
+    "mpn" : "R7FA2E1A92DFM",
+    "peripherals" : [ {
+      "id" : "debug",
+      "instances" : [ {
+        "id" : "debug0",
+        "interfaceType" : "SYSTEM",
+        "modes" : [ {
+          "configurations" : [ {
+            "id" : "debug0.mode.swd",
+            "parameters" : [ {
+              "name" : "fspConfigId",
+              "value" : "debug0.mode"
+            }, {
+              "name" : "fspDriverId",
+              "value" : "module.driver.ioport_on_ioport"
+            } ],
+            "pinConfigs" : [ {
+              "function" : "SWCLK",
+              "pinName" : "debug0.swclk",
+              "pinValue" : "debug0.swclk.p300",
+              "portName" : "P300"
+            }, {
+              "function" : "SWDIO",
+              "pinName" : "debug0.swdio",
+              "pinValue" : "debug0.swdio.p108",
+              "portName" : "P108"
+            } ],
+            "pinDependencyConfigs" : [ ]
+          } ],
+          "name" : "SWD"
+        } ],
+        "name" : "DEBUG0",
+        "unit" : "0",
+        "virtualization" : "None"
+      } ],
+      "name" : "System:DEBUG"
+    } ],
+    "ports" : [ {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "AVCC0",
+        "peripheralInstance" : "analog0"
+      } ],
+      "id" : "avcc0",
+      "name" : "AVCC0",
+      "pin" : "56"
+    }, {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "AVSS0",
+        "peripheralInstance" : "analog0"
+      } ],
+      "id" : "avss0",
+      "name" : "AVSS0",
+      "pin" : "57"
+    }, {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "SWCLK",
+        "peripheralInstance" : "debug0"
+      } ],
+      "id" : "p300",
+      "name" : "P300",
+      "pin" : "32"
+    }, {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "SWDIO",
+        "peripheralInstance" : "debug0"
+      } ],
+      "id" : "p108",
+      "name" : "P108",
+      "pin" : "33"
+    }, {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "RES",
+        "peripheralInstance" : "system0"
+      } ],
+      "id" : "res",
+      "name" : "RES#",
+      "pin" : "25"
+    }, {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "VCC",
+        "peripheralInstance" : "system0"
+      } ],
+      "id" : "vcc",
+      "name" : "VCC",
+      "pin" : "39"
+    }, {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "VCL",
+        "peripheralInstance" : "system0"
+      } ],
+      "id" : "vcl",
+      "name" : "VCL",
+      "pin" : "5"
+    }, {
+      "configurations" : [ ],
+      "connections" : [ ],
+      "functions" : [ {
+        "name" : "VSS",
+        "peripheralInstance" : "system0"
+      } ],
+      "id" : "vss",
+      "name" : "VSS",
+      "pin" : "40"
+    } ]
+  } ],
+  "hardwareModels" : [ {
+    "functionalBlockIds" : [ ],
+    "hardwareComponents" : [ {
+      "deviceModelId" : "3abd56de-ed71-43bd-8244-64d4d6103685",
+      "id" : "342ae74f-865b-4862-933b-16b9b9d3d118",
+      "name" : "R7FA2E1A92DFM",
+      "parameters" : [ ],
+      "sdmReferenceDesignator" : "HC-1627498272"
+    } ],
+    "id" : "af1548c5-dc6f-423a-a6c1-94165328ae13",
+    "sdmReferenceDesignator" : "HM1655177147"
+  } ],
+  "id" : "6e79c302-0a0e-44a4-9390-2c81558e5f33",
+  "schemaVersion" : "v1.0.0",
+  "softwareModels" : [ {
+    "deviceModelId" : "3abd56de-ed71-43bd-8244-64d4d6103685",
+    "id" : "44adb9e7-4457-412d-8dad-749dfd235110",
+    "implementedBy" : "grid:workspace:b9c354df-d7fd-4da9-8a63-560a494355a3:software:software-project/16FB7072-1C6A-42DC-B827-B275004CB5C8",
+    "name" : "RA_Unlink",
+    "sdmReferenceDesignator" : "SM1",
+    "softwareComponents" : [ ],
+    "softwareStackInstances" : [ {
+      "dependencyIds" : [ ],
+      "id" : "module.driver.ioport_on_ioport.0",
+      "name" : "g_ioport I/O Port (r_ioport)",
+      "parameters" : [ ],
+      "peripheralInstanceId" : "debug0",
+      "specification" : {
+        "ecosystem" : "FSP",
+        "name" : "I/O Port (r_ioport)",
+        "vendor" : "Renesas",
+        "version" : "6.4.0"
+      }
+    } ]
+  } ],
+  "version" : 1
+}
