@@ -31,7 +31,7 @@ if (NOT IDE_SUPPORTS_PRE_POST_BUILD_ACTIONS)
 		execute_process(
 			COMMAND_ECHO STDOUT
 			COMMAND
-				${RASC_EXE_PATH} -nosplash --launcher.suppressErrors --generate --devicefamily ra --compiler GCC --toolchainversion ${CMAKE_C_COMPILER_VERSION} --buildconfiguration ${CMAKE_BUILD_TYPE} ${CMAKE_CURRENT_SOURCE_DIR}/configuration.xml
+				${RASC_EXE_PATH} -nosplash --launcher.suppressErrors --generate --devicefamily ra --compiler LLVMARM --toolchainversion ${CMAKE_C_COMPILER_VERSION} --buildconfiguration ${CMAKE_BUILD_TYPE} ${CMAKE_CURRENT_SOURCE_DIR}/configuration.xml
 			ERROR_FILE  ${CMAKE_CURRENT_BINARY_DIR}/rasc_conf_cmd_err.txt
 			RESULT_VARIABLE resultVar
 			TIMEOUT 600
@@ -159,8 +159,8 @@ add_custom_command(
     TARGET
         ${PROJECT_NAME}.elf
     POST_BUILD
-    COMMAND ${CMAKE_OBJCOPY} -O srec ${PROJECT_NAME}.elf ${PROJECT_NAME}.srec
-    COMMENT "Creating S-record file in ${PROJECT_BINARY_DIR}"
+    COMMAND ${CMAKE_OBJCOPY} ${PROJECT_NAME}.elf -O ihex  ${PROJECT_NAME}.hex
+    COMMENT "Creating Intel Hex file in ${PROJECT_BINARY_DIR}"
 )
 
 if (NOT IDE_SUPPORTS_PRE_POST_BUILD_ACTIONS)
@@ -180,9 +180,9 @@ if (NOT IDE_SUPPORTS_PRE_POST_BUILD_ACTIONS)
 	    COMMAND
 	        echo "Running RASC post-build to generate Smart Bundle file for ${PROJECT_NAME}:"
 	    COMMAND
-	        echo ${RASC_EXE_PATH} -nosplash --launcher.suppressErrors ${RASC_GEN_BUNDLE_CMD} --devicefamily ra --compiler GCC --toolchainversion ${CMAKE_C_COMPILER_VERSION} --buildconfiguration ${CMAKE_BUILD_TYPE} ${CMAKE_CURRENT_SOURCE_DIR}/configuration.xml ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.elf ${CMAKE_CURRENT_SOURCE_DIR}/UserNscApiFiles.txt
+	        echo ${RASC_EXE_PATH} -nosplash --launcher.suppressErrors ${RASC_GEN_BUNDLE_CMD} --devicefamily ra --compiler LLVMARM --toolchainversion ${CMAKE_C_COMPILER_VERSION} --buildconfiguration ${CMAKE_BUILD_TYPE} ${CMAKE_CURRENT_SOURCE_DIR}/configuration.xml ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.elf 
 	    COMMAND
-	        ${RASC_EXE_PATH} -nosplash --launcher.suppressErrors ${RASC_GEN_BUNDLE_CMD} --devicefamily ra --compiler GCC --toolchainversion ${CMAKE_C_COMPILER_VERSION} --buildconfiguration ${CMAKE_BUILD_TYPE} ${CMAKE_CURRENT_SOURCE_DIR}/configuration.xml ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.elf ${CMAKE_CURRENT_SOURCE_DIR}/UserNscApiFiles.txt 2> rasc_cmd_log.txt
+	        ${RASC_EXE_PATH} -nosplash --launcher.suppressErrors ${RASC_GEN_BUNDLE_CMD} --devicefamily ra --compiler LLVMARM --toolchainversion ${CMAKE_C_COMPILER_VERSION} --buildconfiguration ${CMAKE_BUILD_TYPE} ${CMAKE_CURRENT_SOURCE_DIR}/configuration.xml ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.elf  2> rasc_cmd_log.txt
 	)
 
 	add_custom_target(generate_sbd_${PROJECT_NAME} ALL

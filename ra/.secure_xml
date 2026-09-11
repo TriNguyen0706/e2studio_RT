@@ -1,71 +1,227 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <raConfiguration version="12">
   <generalSettings>
-    <option key="#Board#" value="board.ra6m4ek"/>
-    <option key="CPU" value="RA6M4"/>
+    <option key="#Board#" value="board.ra4l1ek"/>
+    <option key="CPU" value="RA4L1"/>
     <option key="Core" value="CM33"/>
-    <option key="#TargetName#" value="R7FA6M4AF3CFB"/>
+    <option key="#TargetName#" value="R7FA4L1BD4CFP"/>
     <option key="#TargetARCHITECTURE#" value="cortex-m33"/>
-    <option key="#DeviceCommand#" value="R7FA6M4AF"/>
+    <option key="#DeviceCommand#" value="R7FA4L1BD"/>
     <option key="#RTOS#" value="_none"/>
-    <option key="#pinconfiguration#" value="R7FA6M4AF3CFB.pincfg"/>
-    <option key="#FSPVersion#" value="6.4.0"/>
-    <option key="#ConfigurationFragments#" value="Renesas##BSP##Board##ra6m4_ek##"/>
-    <option key="#SELECTED_TOOLCHAIN#" value="gcc-arm-embedded"/>
-    <option key="#ToolchainVersion#" value="13.2.1.arm-13-7"/>
+    <option key="#pinconfiguration#" value="R7FA4L1BD4CFP.pincfg"/>
+    <option key="#FSPVersion#" value="6.5.0"/>
+    <option key="#ConfigurationFragments#" value="Renesas##BSP##Board##ra4l1_ek##"/>
+    <option key="#SELECTED_TOOLCHAIN#" value="clang_arm"/>
+    <option key="#ToolchainVersion#" value="21.1.1"/>
   </generalSettings>
   <raBspConfiguration/>
   <raClockConfiguration>
-    <node id="board.clock.xtal.freq" mul="24000000" option="_edit"/>
-    <node id="board.clock.hoco.freq" option="board.clock.hoco.freq.20m"/>
+    <node id="board.clock.xtal.freq" mul="8000000" option="_edit"/>
+    <node id="board.clock.hoco.freq" option="board.clock.hoco.freq.48m"/>
     <node id="board.clock.loco.freq" option="board.clock.loco.freq.32768"/>
     <node id="board.clock.moco.freq" option="board.clock.moco.freq.8m"/>
     <node id="board.clock.subclk.freq" option="board.clock.subclk.freq.32768"/>
     <node id="board.clock.pll.source" option="board.clock.pll.source.xtal"/>
-    <node id="board.clock.pll.div" option="board.clock.pll.div.3"/>
-    <node id="board.clock.pll.mul" option="board.clock.pll.mul.250"/>
+    <node id="board.clock.pll.div" option="board.clock.pll.div.1"/>
+    <node id="board.clock.pll.mul" option="board.clock.pll.mul.100"/>
     <node id="board.clock.pll.display" option="board.clock.pll.display.value"/>
-    <node id="board.clock.pll2.source" option="board.clock.pll2.source.disabled"/>
-    <node id="board.clock.pll2.div" option="board.clock.pll2.div.2"/>
-    <node id="board.clock.pll2.mul" option="board.clock.pll2.mul.200"/>
-    <node id="board.clock.pll2.display" option="board.clock.pll2.display.value"/>
     <node id="board.clock.clock.source" option="board.clock.clock.source.pll"/>
     <node id="board.clock.clkout.source" option="board.clock.clkout.source.disabled"/>
+    <node id="board.clock.canfdclk.source" option="board.clock.canfdclk.source.disabled"/>
+    <node id="board.clock.i3cclk.source" option="board.clock.i3cclk.source.disabled"/>
+    <node id="board.clock.utasel.source" option="board.clock.utasel.source.disabled"/>
     <node id="board.clock.uclk.source" option="board.clock.uclk.source.disabled"/>
-    <node id="board.clock.octaspiclk.source" option="board.clock.octaspiclk.source.disabled"/>
     <node id="board.clock.iclk.div" option="board.clock.iclk.div.1"/>
-    <node id="board.clock.pclka.div" option="board.clock.pclka.div.2"/>
-    <node id="board.clock.pclkb.div" option="board.clock.pclkb.div.4"/>
-    <node id="board.clock.pclkc.div" option="board.clock.pclkc.div.4"/>
-    <node id="board.clock.pclkd.div" option="board.clock.pclkd.div.2"/>
-    <node id="board.clock.bclk.div" option="board.clock.bclk.div.2"/>
-    <node id="board.clock.bclkout.div" option="board.clock.bclkout.div.2"/>
-    <node id="board.clock.fclk.div" option="board.clock.fclk.div.4"/>
+    <node id="board.clock.pclka.div" option="board.clock.pclka.div.1"/>
+    <node id="board.clock.pclkb.div" option="board.clock.pclkb.div.2"/>
+    <node id="board.clock.pclkc.div" option="board.clock.pclkc.div.2"/>
+    <node id="board.clock.pclkd.div" option="board.clock.pclkd.div.1"/>
+    <node id="board.clock.fclk.div" option="board.clock.fclk.div.2"/>
     <node id="board.clock.clkout.div" option="board.clock.clkout.div.1"/>
-    <node id="board.clock.uclk.div" option="board.clock.uclk.div.5"/>
-    <node id="board.clock.octaspiclk.div" option="board.clock.octaspiclk.div.1"/>
+    <node id="board.clock.canfdclk.div" option="board.clock.canfdclk.div.2"/>
+    <node id="board.clock.i3cclk.div" option="board.clock.i3cclk.div.1"/>
+    <node id="board.clock.uclk.div" option="board.clock.uclk.div.1"/>
     <node id="board.clock.iclk.display" option="board.clock.iclk.display.value"/>
     <node id="board.clock.pclka.display" option="board.clock.pclka.display.value"/>
     <node id="board.clock.pclkb.display" option="board.clock.pclkb.display.value"/>
     <node id="board.clock.pclkc.display" option="board.clock.pclkc.display.value"/>
     <node id="board.clock.pclkd.display" option="board.clock.pclkd.display.value"/>
-    <node id="board.clock.bclk.display" option="board.clock.bclk.display.value"/>
-    <node id="board.clock.bclkout.display" option="board.clock.bclkout.display.value"/>
     <node id="board.clock.fclk.display" option="board.clock.fclk.display.value"/>
     <node id="board.clock.clkout.display" option="board.clock.clkout.display.value"/>
+    <node id="board.clock.canfdclk.display" option="board.clock.canfdclk.display.value"/>
+    <node id="board.clock.uarta.source" option="board.clock.uarta.source.utasel"/>
+    <node id="board.clock.uarta.source.display" option="board.clock.uarta.display.value"/>
+    <node id="board.clock.uarta1.source" option="board.clock.uarta1.source.utasel"/>
+    <node id="board.clock.uarta1.source.display" option="board.clock.uarta1.display.value"/>
+    <node id="board.clock.i3cclk.display" option="board.clock.i3cclk.display.value"/>
     <node id="board.clock.uclk.display" option="board.clock.uclk.display.value"/>
-    <node id="board.clock.octaspiclk.display" option="board.clock.octaspiclk.display.value"/>
   </raClockConfiguration>
   <raPinConfiguration>
     <pincfg active="true" name="" symbol="">
-      <configSetting altId="debug0.tck.p300" configurationId="debug0.tck" peripheral="DEBUG0"/>
-      <configSetting altId="debug0.tdi.p110" configurationId="debug0.tdi" peripheral="DEBUG0"/>
-      <configSetting altId="debug0.tdo.p109" configurationId="debug0.tdo" peripheral="DEBUG0"/>
-      <configSetting altId="debug0.tms.p108" configurationId="debug0.tms" peripheral="DEBUG0"/>
+      <configSetting altId="adc0.an000.p002" configurationId="adc0.an000" peripheral="ADC0"/>
+      <configSetting altId="adc0.an001.p003" configurationId="adc0.an001" peripheral="ADC0"/>
+      <configSetting altId="adc0.an002.p004" configurationId="adc0.an002" peripheral="ADC0"/>
+      <configSetting altId="adc0.an022.p513" configurationId="adc0.an022" peripheral="ADC0"/>
+      <configSetting altId="adc0.an023.p512" configurationId="adc0.an023" peripheral="ADC0"/>
+      <configSetting altId="adc0.an024.p511" configurationId="adc0.an024" peripheral="ADC0"/>
+      <configSetting altId="adc0.an025.p510" configurationId="adc0.an025" peripheral="ADC0"/>
+      <configSetting altId="cgc.extal.p212" configurationId="cgc.extal" peripheral="CGC"/>
+      <configSetting altId="cgc.xcin.p215" configurationId="cgc.xcin" peripheral="CGC"/>
+      <configSetting altId="cgc.xcout.p214" configurationId="cgc.xcout" peripheral="CGC"/>
+      <configSetting altId="cgc.xtal.p213" configurationId="cgc.xtal" peripheral="CGC"/>
+      <configSetting altId="i3c0.i3c_scl0.p400" configurationId="i3c0.i3c_scl0" peripheral="I3C0"/>
+      <configSetting altId="i3c0.i3c_sda0.p401" configurationId="i3c0.i3c_sda0" peripheral="I3C0"/>
+      <configSetting altId="iic0.scl0.p101" configurationId="iic0.scl0" peripheral="IIC0"/>
+      <configSetting altId="iic0.sda0.p100" configurationId="iic0.sda0" peripheral="IIC0"/>
+      <configSetting altId="irq.irq0.p105" configurationId="irq.irq0" peripheral="IRQ"/>
+      <configSetting altId="irq.irq1.p104" configurationId="irq.irq1" peripheral="IRQ"/>
+      <configSetting altId="irq.irq6.p000" configurationId="irq.irq6" peripheral="IRQ"/>
+      <configSetting altId="irq.irq7.p001" configurationId="irq.irq7" peripheral="IRQ"/>
+      <configSetting altId="jtag_fslash_swd.swclk.p300" configurationId="jtag_fslash_swd.swclk" peripheral="JTAG/SWD"/>
+      <configSetting altId="jtag_fslash_swd.swdio.p108" configurationId="jtag_fslash_swd.swdio" peripheral="JTAG/SWD"/>
+      <configSetting altId="p000.gpio_irq.gpio_irq_enabled" configurationId="p000.gpio_irq"/>
+      <configSetting altId="p000.gpio_mode.gpio_mode_irq" configurationId="p000.gpio_mode"/>
+      <configSetting altId="p001.gpio_irq.gpio_irq_enabled" configurationId="p001.gpio_irq"/>
+      <configSetting altId="p001.gpio_mode.gpio_mode_irq" configurationId="p001.gpio_mode"/>
+      <configSetting altId="p002.gpio_mode.gpio_mode_an" configurationId="p002.gpio_mode"/>
+      <configSetting altId="p003.gpio_mode.gpio_mode_an" configurationId="p003.gpio_mode"/>
+      <configSetting altId="p004.gpio_mode.gpio_mode_an" configurationId="p004.gpio_mode"/>
+      <configSetting altId="p010.gpio_mode.gpio_mode_peripheral" configurationId="p010.gpio_mode"/>
+      <configSetting altId="p011.gpio_mode.gpio_mode_peripheral" configurationId="p011.gpio_mode"/>
+      <configSetting altId="p100.gpio_mode.gpio_mode_peripheral" configurationId="p100.gpio_mode"/>
+      <configSetting altId="p101.gpio_mode.gpio_mode_peripheral" configurationId="p101.gpio_mode"/>
+      <configSetting altId="p104.gpio_irq.gpio_irq_enabled" configurationId="p104.gpio_irq"/>
+      <configSetting altId="p104.gpio_mode.gpio_mode_irq" configurationId="p104.gpio_mode"/>
+      <configSetting altId="p105.gpio_irq.gpio_irq_enabled" configurationId="p105.gpio_irq"/>
+      <configSetting altId="p105.gpio_mode.gpio_mode_irq" configurationId="p105.gpio_mode"/>
+      <configSetting altId="p106.output.low" configurationId="p106"/>
+      <configSetting altId="p106.gpio_mode.gpio_mode_out.low" configurationId="p106.gpio_mode"/>
+      <configSetting altId="p107.gpio_mode.gpio_mode_peripheral" configurationId="p107.gpio_mode"/>
       <configSetting altId="p108.gpio_mode.gpio_mode_peripheral" configurationId="p108.gpio_mode"/>
       <configSetting altId="p109.gpio_mode.gpio_mode_peripheral" configurationId="p109.gpio_mode"/>
       <configSetting altId="p110.gpio_mode.gpio_mode_peripheral" configurationId="p110.gpio_mode"/>
+      <configSetting altId="p111.gpio_mode.gpio_mode_peripheral" configurationId="p111.gpio_mode"/>
+      <configSetting altId="p112.gpio_mode.gpio_mode_peripheral" configurationId="p112.gpio_mode"/>
+      <configSetting altId="p113.gpio_mode.gpio_mode_peripheral" configurationId="p113.gpio_mode"/>
+      <configSetting altId="p115.gpio_mode.gpio_mode_peripheral" configurationId="p115.gpio_mode"/>
+      <configSetting altId="p201.gpio_mode.gpio_mode_peripheral" configurationId="p201.gpio_mode"/>
+      <configSetting altId="p204.gpio_mode.gpio_mode_peripheral" configurationId="p204.gpio_mode"/>
+      <configSetting altId="p205.gpio_mode.gpio_mode_peripheral" configurationId="p205.gpio_mode"/>
+      <configSetting altId="p206.gpio_mode.gpio_mode_peripheral" configurationId="p206.gpio_mode"/>
+      <configSetting altId="p207.gpio_mode.gpio_mode_peripheral" configurationId="p207.gpio_mode"/>
+      <configSetting altId="p208.gpio_mode.gpio_mode_peripheral" configurationId="p208.gpio_mode"/>
+      <configSetting altId="p209.gpio_mode.gpio_mode_peripheral" configurationId="p209.gpio_mode"/>
+      <configSetting altId="p210.gpio_mode.gpio_mode_peripheral" configurationId="p210.gpio_mode"/>
+      <configSetting altId="p211.gpio_mode.gpio_mode_peripheral" configurationId="p211.gpio_mode"/>
+      <configSetting altId="p212.gpio_mode.gpio_mode_peripheral" configurationId="p212.gpio_mode"/>
+      <configSetting altId="p213.gpio_mode.gpio_mode_peripheral" configurationId="p213.gpio_mode"/>
+      <configSetting altId="p214.gpio_mode.gpio_mode_peripheral" configurationId="p214.gpio_mode"/>
+      <configSetting altId="p215.gpio_mode.gpio_mode_peripheral" configurationId="p215.gpio_mode"/>
       <configSetting altId="p300.gpio_mode.gpio_mode_peripheral" configurationId="p300.gpio_mode"/>
+      <configSetting altId="p301.input" configurationId="p301"/>
+      <configSetting altId="p301.gpio_mode.gpio_mode_in" configurationId="p301.gpio_mode"/>
+      <configSetting altId="p302.input" configurationId="p302"/>
+      <configSetting altId="p302.gpio_mode.gpio_mode_in" configurationId="p302.gpio_mode"/>
+      <configSetting altId="p303.gpio_mode.gpio_mode_peripheral" configurationId="p303.gpio_mode"/>
+      <configSetting altId="p304.gpio_mode.gpio_mode_peripheral" configurationId="p304.gpio_mode"/>
+      <configSetting altId="p305.input" configurationId="p305"/>
+      <configSetting altId="p305.gpio_mode.gpio_mode_in" configurationId="p305.gpio_mode"/>
+      <configSetting altId="p306.input" configurationId="p306"/>
+      <configSetting altId="p306.gpio_mode.gpio_mode_in" configurationId="p306.gpio_mode"/>
+      <configSetting altId="p307.input" configurationId="p307"/>
+      <configSetting altId="p307.gpio_mode.gpio_mode_in" configurationId="p307.gpio_mode"/>
+      <configSetting altId="p400.gpio_mode.gpio_mode_peripheral" configurationId="p400.gpio_mode"/>
+      <configSetting altId="p401.gpio_mode.gpio_mode_peripheral" configurationId="p401.gpio_mode"/>
+      <configSetting altId="p402.gpio_mode.gpio_mode_peripheral" configurationId="p402.gpio_mode"/>
+      <configSetting altId="p403.gpio_mode.gpio_mode_peripheral" configurationId="p403.gpio_mode"/>
+      <configSetting altId="p404.gpio_mode.gpio_mode_peripheral" configurationId="p404.gpio_mode"/>
+      <configSetting altId="p405.gpio_mode.gpio_mode_peripheral" configurationId="p405.gpio_mode"/>
+      <configSetting altId="p406.gpio_mode.gpio_mode_peripheral" configurationId="p406.gpio_mode"/>
+      <configSetting altId="p407.gpio_mode.gpio_mode_peripheral" configurationId="p407.gpio_mode"/>
+      <configSetting altId="p408.gpio_mode.gpio_mode_peripheral" configurationId="p408.gpio_mode"/>
+      <configSetting altId="p409.gpio_mode.gpio_mode_peripheral" configurationId="p409.gpio_mode"/>
+      <configSetting altId="p410.gpio_mode.gpio_mode_peripheral" configurationId="p410.gpio_mode"/>
+      <configSetting altId="p411.gpio_mode.gpio_mode_peripheral" configurationId="p411.gpio_mode"/>
+      <configSetting altId="p413.input" configurationId="p413"/>
+      <configSetting altId="p413.gpio_mode.gpio_mode_in" configurationId="p413.gpio_mode"/>
+      <configSetting altId="p414.gpio_mode.gpio_mode_peripheral" configurationId="p414.gpio_mode"/>
+      <configSetting altId="p415.gpio_mode.gpio_mode_peripheral" configurationId="p415.gpio_mode"/>
+      <configSetting altId="p500.gpio_mode.gpio_mode_peripheral" configurationId="p500.gpio_mode"/>
+      <configSetting altId="p501.gpio_mode.gpio_mode_peripheral" configurationId="p501.gpio_mode"/>
+      <configSetting altId="p502.gpio_mode.gpio_mode_peripheral" configurationId="p502.gpio_mode"/>
+      <configSetting altId="p503.gpio_mode.gpio_mode_peripheral" configurationId="p503.gpio_mode"/>
+      <configSetting altId="p504.gpio_mode.gpio_mode_peripheral" configurationId="p504.gpio_mode"/>
+      <configSetting altId="p505.gpio_mode.gpio_mode_peripheral" configurationId="p505.gpio_mode"/>
+      <configSetting altId="p506.gpio_mode.gpio_mode_peripheral" configurationId="p506.gpio_mode"/>
+      <configSetting altId="p507.gpio_mode.gpio_mode_peripheral" configurationId="p507.gpio_mode"/>
+      <configSetting altId="p508.input" configurationId="p508"/>
+      <configSetting altId="p508.gpio_mode.gpio_mode_in" configurationId="p508.gpio_mode"/>
+      <configSetting altId="p509.input" configurationId="p509"/>
+      <configSetting altId="p509.gpio_mode.gpio_mode_in" configurationId="p509.gpio_mode"/>
+      <configSetting altId="p510.gpio_mode.gpio_mode_an" configurationId="p510.gpio_mode"/>
+      <configSetting altId="p511.gpio_mode.gpio_mode_an" configurationId="p511.gpio_mode"/>
+      <configSetting altId="p512.gpio_mode.gpio_mode_an" configurationId="p512.gpio_mode"/>
+      <configSetting altId="p513.gpio_mode.gpio_mode_an" configurationId="p513.gpio_mode"/>
+      <configSetting altId="p600.gpio_mode.gpio_mode_peripheral" configurationId="p600.gpio_mode"/>
+      <configSetting altId="p601.output.low" configurationId="p601"/>
+      <configSetting altId="p601.gpio_mode.gpio_mode_out.low" configurationId="p601.gpio_mode"/>
+      <configSetting altId="p602.gpio_mode.gpio_mode_peripheral" configurationId="p602.gpio_mode"/>
+      <configSetting altId="p608.gpio_mode.gpio_mode_peripheral" configurationId="p608.gpio_mode"/>
+      <configSetting altId="p609.output.low" configurationId="p609"/>
+      <configSetting altId="p609.gpio_mode.gpio_mode_out.low" configurationId="p609.gpio_mode"/>
+      <configSetting altId="p610.output.low" configurationId="p610"/>
+      <configSetting altId="p610.gpio_mode.gpio_mode_out.low" configurationId="p610.gpio_mode"/>
+      <configSetting altId="p700.gpio_mode.gpio_mode_peripheral" configurationId="p700.gpio_mode"/>
+      <configSetting altId="p708.gpio_mode.gpio_mode_peripheral" configurationId="p708.gpio_mode"/>
+      <configSetting altId="p814.gpio_mode.gpio_mode_peripheral" configurationId="p814.gpio_mode"/>
+      <configSetting altId="p815.gpio_mode.gpio_mode_peripheral" configurationId="p815.gpio_mode"/>
+      <configSetting altId="qspi.qio0.p502" configurationId="qspi.qio0" peripheral="QSPI"/>
+      <configSetting altId="qspi.qio1.p503" configurationId="qspi.qio1" peripheral="QSPI"/>
+      <configSetting altId="qspi.qio2.p504" configurationId="qspi.qio2" peripheral="QSPI"/>
+      <configSetting altId="qspi.qio3.p505" configurationId="qspi.qio3" peripheral="QSPI"/>
+      <configSetting altId="qspi.qspclk.p500" configurationId="qspi.qspclk" peripheral="QSPI"/>
+      <configSetting altId="qspi.qssl.p501" configurationId="qspi.qssl" peripheral="QSPI"/>
+      <configSetting altId="sci5.rxd5.p507" configurationId="sci5.rxd5" peripheral="SCI5"/>
+      <configSetting altId="sci5.txd5.p506" configurationId="sci5.txd5" peripheral="SCI5"/>
+      <configSetting altId="sci9.cts_rts9.p112" configurationId="sci9.cts_rts9" peripheral="SCI9"/>
+      <configSetting altId="sci9.rxd9.p110" configurationId="sci9.rxd9" peripheral="SCI9"/>
+      <configSetting altId="sci9.sck9.p111" configurationId="sci9.sck9" peripheral="SCI9"/>
+      <configSetting altId="sci9.txd9.p109" configurationId="sci9.txd9" peripheral="SCI9"/>
+      <configSetting altId="slcdc.caph.p207" configurationId="slcdc.caph" peripheral="SLCDC"/>
+      <configSetting altId="slcdc.capl.p206" configurationId="slcdc.capl" peripheral="SLCDC"/>
+      <configSetting altId="slcdc.com0.p205" configurationId="slcdc.com0" peripheral="SLCDC"/>
+      <configSetting altId="slcdc.com1.p208" configurationId="slcdc.com1" peripheral="SLCDC"/>
+      <configSetting altId="slcdc.com2.p304" configurationId="slcdc.com2" peripheral="SLCDC"/>
+      <configSetting altId="slcdc.com3.p303" configurationId="slcdc.com3" peripheral="SLCDC"/>
+      <configSetting altId="slcdc.seg10.p406" configurationId="slcdc.seg10" peripheral="SLCDC"/>
+      <configSetting altId="slcdc.seg11.p700" configurationId="slcdc.seg11" peripheral="SLCDC"/>
+      <configSetting altId="slcdc.seg12.p708" configurationId="slcdc.seg12" peripheral="SLCDC"/>
+      <configSetting altId="slcdc.seg13.p415" configurationId="slcdc.seg13" peripheral="SLCDC"/>
+      <configSetting altId="slcdc.seg14.p414" configurationId="slcdc.seg14" peripheral="SLCDC"/>
+      <configSetting altId="slcdc.seg17.p407" configurationId="slcdc.seg17" peripheral="SLCDC"/>
+      <configSetting altId="slcdc.seg18.p204" configurationId="slcdc.seg18" peripheral="SLCDC"/>
+      <configSetting altId="slcdc.seg19.p211" configurationId="slcdc.seg19" peripheral="SLCDC"/>
+      <configSetting altId="slcdc.seg20.p210" configurationId="slcdc.seg20" peripheral="SLCDC"/>
+      <configSetting altId="slcdc.seg21.p209" configurationId="slcdc.seg21" peripheral="SLCDC"/>
+      <configSetting altId="slcdc.seg29.p113" configurationId="slcdc.seg29" peripheral="SLCDC"/>
+      <configSetting altId="slcdc.seg31.p115" configurationId="slcdc.seg31" peripheral="SLCDC"/>
+      <configSetting altId="slcdc.seg32.p608" configurationId="slcdc.seg32" peripheral="SLCDC"/>
+      <configSetting altId="slcdc.seg35.p602" configurationId="slcdc.seg35" peripheral="SLCDC"/>
+      <configSetting altId="slcdc.seg37.p600" configurationId="slcdc.seg37" peripheral="SLCDC"/>
+      <configSetting altId="slcdc.seg38.p107" configurationId="slcdc.seg38" peripheral="SLCDC"/>
+      <configSetting altId="slcdc.seg6.p402" configurationId="slcdc.seg6" peripheral="SLCDC"/>
+      <configSetting altId="slcdc.seg7.p403" configurationId="slcdc.seg7" peripheral="SLCDC"/>
+      <configSetting altId="slcdc.seg8.p404" configurationId="slcdc.seg8" peripheral="SLCDC"/>
+      <configSetting altId="slcdc.seg9.p405" configurationId="slcdc.seg9" peripheral="SLCDC"/>
+      <configSetting altId="slcdc.vl1.p411" configurationId="slcdc.vl1" peripheral="SLCDC"/>
+      <configSetting altId="slcdc.vl2.p410" configurationId="slcdc.vl2" peripheral="SLCDC"/>
+      <configSetting altId="slcdc.vl3.p408" configurationId="slcdc.vl3" peripheral="SLCDC"/>
+      <configSetting altId="slcdc.vl4.p409" configurationId="slcdc.vl4" peripheral="SLCDC"/>
+      <configSetting altId="system.md.p201" configurationId="system.md" peripheral="SYSTEM"/>
+      <configSetting altId="system.usb_dm.p815" configurationId="system.usb_dm" peripheral="SYSTEM"/>
+      <configSetting altId="system.usb_dp.p814" configurationId="system.usb_dp" peripheral="SYSTEM"/>
+      <configSetting altId="system.vrefh0.p010" configurationId="system.vrefh0" peripheral="SYSTEM"/>
+      <configSetting altId="system.vrefl0.p011" configurationId="system.vrefl0" peripheral="SYSTEM"/>
     </pincfg>
   </raPinConfiguration>
 </raConfiguration>

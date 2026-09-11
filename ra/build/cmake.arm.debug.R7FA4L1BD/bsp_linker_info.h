@@ -75,14 +75,6 @@ typedef struct st_bsp_init_info
 
 extern bsp_init_info_t const g_init_info;
 /* These symbols are used for sau/idau configuration in a secure project */
-extern uint32_t const *const gp_ddsc_DATA_FLASH_START;
-extern uint32_t const *const gp_ddsc_DATA_FLASH_END;
-extern uint32_t const *const gp_ddsc_FLASH_START;
-extern uint32_t const *const gp_ddsc_FLASH_END;
-extern uint32_t const *const gp_ddsc_FLASH_NSC;
-extern uint32_t const *const gp_ddsc_RAM_START;
-extern uint32_t const *const gp_ddsc_RAM_END;
-extern uint32_t const *const gp_ddsc_RAM_NSC;
 
 /***********************************************************************************************************************
  * Exported global functions (to be accessed by other files)
@@ -93,86 +85,46 @@ extern uint32_t const *const gp_ddsc_RAM_NSC;
  * Objects allocated by bsp_linker.c
  **********************************************************************************************************************/
 /* DDSC symbol definitions */
-extern const uint32_t __ddsc_DATA_FLASH_START;
-BSP_DONT_REMOVE uint32_t const * const gp_ddsc_DATA_FLASH_START = &__ddsc_DATA_FLASH_START;
-extern const uint32_t __ddsc_DATA_FLASH_END;
-BSP_DONT_REMOVE uint32_t const * const gp_ddsc_DATA_FLASH_END = &__ddsc_DATA_FLASH_END;
-extern const uint32_t __ddsc_FLASH_START;
-BSP_DONT_REMOVE uint32_t const * const gp_ddsc_FLASH_START = &__ddsc_FLASH_START;
-extern const uint32_t __ddsc_FLASH_END;
-BSP_DONT_REMOVE uint32_t const * const gp_ddsc_FLASH_END = &__ddsc_FLASH_END;
-extern const uint32_t __ddsc_FLASH_NSC;
-BSP_DONT_REMOVE uint32_t const * const gp_ddsc_FLASH_NSC = &__ddsc_FLASH_NSC;
-extern const uint32_t __ddsc_RAM_START;
-BSP_DONT_REMOVE uint32_t const * const gp_ddsc_RAM_START = &__ddsc_RAM_START;
-extern const uint32_t __ddsc_RAM_END;
-BSP_DONT_REMOVE uint32_t const * const gp_ddsc_RAM_END = &__ddsc_RAM_END;
-extern const uint32_t __ddsc_RAM_NSC;
-BSP_DONT_REMOVE uint32_t const * const gp_ddsc_RAM_NSC = &__ddsc_RAM_NSC;
 /* Zero initialization tables */
-extern uint32_t __ospi0_cs0_zero_nocache$$Base;
-extern uint32_t __ospi0_cs0_zero_nocache$$Limit;
-extern uint32_t __ospi0_cs0_zero$$Base;
-extern uint32_t __ospi0_cs0_zero$$Limit;
 extern uint32_t __ram_zero_nocache$$Base;
 extern uint32_t __ram_zero_nocache$$Limit;
 extern uint32_t __ram_zero$$Base;
 extern uint32_t __ram_zero$$Limit;
+extern uint32_t __ram_tbss$$Base;
+extern uint32_t __ram_tbss$$Limit;
 static const bsp_init_zero_info_t zero_list[] =
 {
-  {.p_base = &__ospi0_cs0_zero_nocache$$Base, .p_limit = &__ospi0_cs0_zero_nocache$$Limit,.type={.copy_64 = 0, .external = 1, .source_type = INIT_MEM_ZERO, .destination_type = INIT_MEM_OSPI0_CS0}},
-  {.p_base = &__ospi0_cs0_zero$$Base, .p_limit = &__ospi0_cs0_zero$$Limit,.type={.copy_64 = 0, .external = 1, .source_type = INIT_MEM_ZERO, .destination_type = INIT_MEM_OSPI0_CS0}},
   {.p_base = &__ram_zero_nocache$$Base, .p_limit = &__ram_zero_nocache$$Limit,.type={.copy_64 = 0, .external = 0, .source_type = INIT_MEM_ZERO, .destination_type = INIT_MEM_RAM}},
-  {.p_base = &__ram_zero$$Base, .p_limit = &__ram_zero$$Limit,.type={.copy_64 = 0, .external = 0, .source_type = INIT_MEM_ZERO, .destination_type = INIT_MEM_RAM}}
+  {.p_base = &__ram_zero$$Base, .p_limit = &__ram_zero$$Limit,.type={.copy_64 = 0, .external = 0, .source_type = INIT_MEM_ZERO, .destination_type = INIT_MEM_RAM}},
+  {.p_base = &__ram_tbss$$Base, .p_limit = &__ram_tbss$$Limit,.type={.copy_64 = 0, .external = 0, .source_type = INIT_MEM_ZERO, .destination_type = INIT_MEM_RAM}}
 };
 /* Load initialization tables */
-extern uint32_t __ospi0_cs0_from_qspi_flash$$Base;
-extern uint32_t __ospi0_cs0_from_qspi_flash$$Limit;
-extern uint32_t __ospi0_cs0_from_qspi_flash$$Load;
-extern uint32_t __ospi0_cs0_from_ospi0_cs1$$Base;
-extern uint32_t __ospi0_cs0_from_ospi0_cs1$$Limit;
-extern uint32_t __ospi0_cs0_from_ospi0_cs1$$Load;
-extern uint32_t __ospi0_cs0_from_data_flash$$Base;
-extern uint32_t __ospi0_cs0_from_data_flash$$Limit;
-extern uint32_t __ospi0_cs0_from_data_flash$$Load;
-extern uint32_t __ospi0_cs0_from_flash$$Base;
-extern uint32_t __ospi0_cs0_from_flash$$Limit;
-extern uint32_t __ospi0_cs0_from_flash$$Load;
 extern uint32_t __ram_from_qspi_flash$$Base;
 extern uint32_t __ram_from_qspi_flash$$Limit;
 extern uint32_t __ram_from_qspi_flash$$Load;
-extern uint32_t __ram_from_ospi0_cs1$$Base;
-extern uint32_t __ram_from_ospi0_cs1$$Limit;
-extern uint32_t __ram_from_ospi0_cs1$$Load;
 extern uint32_t __ram_from_data_flash$$Base;
 extern uint32_t __ram_from_data_flash$$Limit;
 extern uint32_t __ram_from_data_flash$$Load;
 extern uint32_t __ram_from_flash$$Base;
 extern uint32_t __ram_from_flash$$Limit;
 extern uint32_t __ram_from_flash$$Load;
+extern uint32_t __ram_tdata$$Base;
+extern uint32_t __ram_tdata$$Limit;
+extern uint32_t __ram_tdata$$Load;
 static const bsp_init_copy_info_t copy_list[] =
 {
-  {.p_base = &__ospi0_cs0_from_qspi_flash$$Base, .p_limit = &__ospi0_cs0_from_qspi_flash$$Limit, .p_load = &__ospi0_cs0_from_qspi_flash$$Load,.type={.copy_64 = 0, .external = 1, .source_type = INIT_MEM_QSPI_FLASH, .destination_type = INIT_MEM_OSPI0_CS0}},
-  {.p_base = &__ospi0_cs0_from_ospi0_cs1$$Base, .p_limit = &__ospi0_cs0_from_ospi0_cs1$$Limit, .p_load = &__ospi0_cs0_from_ospi0_cs1$$Load,.type={.copy_64 = 0, .external = 1, .source_type = INIT_MEM_OSPI0_CS1, .destination_type = INIT_MEM_OSPI0_CS0}},
-  {.p_base = &__ospi0_cs0_from_data_flash$$Base, .p_limit = &__ospi0_cs0_from_data_flash$$Limit, .p_load = &__ospi0_cs0_from_data_flash$$Load,.type={.copy_64 = 0, .external = 1, .source_type = INIT_MEM_DATA_FLASH, .destination_type = INIT_MEM_OSPI0_CS0}},
-  {.p_base = &__ospi0_cs0_from_flash$$Base, .p_limit = &__ospi0_cs0_from_flash$$Limit, .p_load = &__ospi0_cs0_from_flash$$Load,.type={.copy_64 = 0, .external = 1, .source_type = INIT_MEM_FLASH, .destination_type = INIT_MEM_OSPI0_CS0}},
   {.p_base = &__ram_from_qspi_flash$$Base, .p_limit = &__ram_from_qspi_flash$$Limit, .p_load = &__ram_from_qspi_flash$$Load,.type={.copy_64 = 0, .external = 1, .source_type = INIT_MEM_QSPI_FLASH, .destination_type = INIT_MEM_RAM}},
-  {.p_base = &__ram_from_ospi0_cs1$$Base, .p_limit = &__ram_from_ospi0_cs1$$Limit, .p_load = &__ram_from_ospi0_cs1$$Load,.type={.copy_64 = 0, .external = 1, .source_type = INIT_MEM_OSPI0_CS1, .destination_type = INIT_MEM_RAM}},
   {.p_base = &__ram_from_data_flash$$Base, .p_limit = &__ram_from_data_flash$$Limit, .p_load = &__ram_from_data_flash$$Load,.type={.copy_64 = 0, .external = 0, .source_type = INIT_MEM_DATA_FLASH, .destination_type = INIT_MEM_RAM}},
-  {.p_base = &__ram_from_flash$$Base, .p_limit = &__ram_from_flash$$Limit, .p_load = &__ram_from_flash$$Load,.type={.copy_64 = 0, .external = 0, .source_type = INIT_MEM_FLASH, .destination_type = INIT_MEM_RAM}}
+  {.p_base = &__ram_from_flash$$Base, .p_limit = &__ram_from_flash$$Limit, .p_load = &__ram_from_flash$$Load,.type={.copy_64 = 0, .external = 0, .source_type = INIT_MEM_FLASH, .destination_type = INIT_MEM_RAM}},
+  {.p_base = &__ram_tdata$$Base, .p_limit = &__ram_tdata$$Limit, .p_load = &__ram_tdata$$Load,.type={.copy_64 = 0, .external = 0, .source_type = INIT_MEM_FLASH, .destination_type = INIT_MEM_RAM}}
 };
 /* nocache regions */
-extern uint32_t __ospi0_cs0_noinit_nocache$$Base;
-extern uint32_t __ospi0_cs0_noinit_nocache$$Limit;
-extern uint32_t __ospi0_cs0_zero_nocache$$Base;
-extern uint32_t __ospi0_cs0_zero_nocache$$Limit;
 extern uint32_t __ram_noinit_nocache$$Base;
 extern uint32_t __ram_noinit_nocache$$Limit;
 extern uint32_t __ram_zero_nocache$$Base;
 extern uint32_t __ram_zero_nocache$$Limit;
 static const bsp_mpu_nocache_info_t nocache_list[] =
 {
-  {.p_base = &__ospi0_cs0_noinit_nocache$$Base, .p_limit = &__ospi0_cs0_zero_nocache$$Limit},
   {.p_base = &__ram_noinit_nocache$$Base, .p_limit = &__ram_zero_nocache$$Limit},
 };
 

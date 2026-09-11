@@ -18,7 +18,7 @@ set(RASC_CONFIG_FILE ${SCRIPT_DIR}/../configuration.xml)
 
 include(${SCRIPT_DIR}/../Config.cmake)
 
-execute_process(COMMAND ${RASC_EXE_PATH} -nosplash --launcher.suppressErrors --generate --devicefamily ra --compiler GCC --toolchainversion ${CMAKE_C_COMPILER_VERSION} --buildconfiguration ${CMAKE_BUILD_TYPE} ${CMAKE_CURRENT_SOURCE_DIR}/${RASC_CONFIG_FILE}
+execute_process(COMMAND ${RASC_EXE_PATH} -nosplash --launcher.suppressErrors --generate --devicefamily ra --compiler LLVMARM --toolchainversion ${CMAKE_C_COMPILER_VERSION} --buildconfiguration ${CMAKE_BUILD_TYPE} ${CMAKE_CURRENT_SOURCE_DIR}/${RASC_CONFIG_FILE}
     RESULT_VARIABLE RASC_EXIT_CODE)
 
 if(NOT RASC_EXIT_CODE EQUAL "0")

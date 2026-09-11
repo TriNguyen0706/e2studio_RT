@@ -1,18 +1,16 @@
 {
   "cpuType": "cortex-m33",
-  "deviceName": "R7FA6M4AF3CFB",
+  "deviceName": "R7FA4L1BD4CFP",
   "coreName": "CM33",
-  "compilerType": "GCC",
-  "deviceCommand": "R7FA6M4AF",
+  "compilerType": "LLVMARM",
+  "deviceCommand": "R7FA4L1BD",
   "buildArtifactType": "EXECUTABLE",
-  "tzType": "SECURE",
   "isCpp": false,
   "activeBuildConfiguration": "Release",
   "buildConfigurations": {
     "Debug": {
       "definedMacros": [
         "_RENESAS_RA_",
-        "_RA_TZ_SECURE",
         "_RA_CORE=CM33",
         "_RA_ORDINAL=1"
       ],
@@ -38,20 +36,17 @@
       "libraryPaths": [],
       "libraryNames": [],
       "objectFiles": [],
-      "targetDeviceName": "R7FA6M4AF3CFB",
+      "targetDeviceName": "R7FA4L1BD4CFP",
       "entrySymbol": "Reset_Handler",
       "buildConfigurationName": "Release",
       "isPreBuildContentGenEnabled": false,
       "isPostBuildContentGenEnabled": false,
       "isTargetDeviceSupportsTrustZone": true,
-      "buildOptionsMap": {
-        "cmse": "true"
-      }
+      "buildOptionsMap": {}
     },
     "Release": {
       "definedMacros": [
         "_RENESAS_RA_",
-        "_RA_TZ_SECURE",
         "_RA_CORE=CM33",
         "_RA_ORDINAL=1"
       ],
@@ -77,16 +72,14 @@
       "libraryPaths": [],
       "libraryNames": [],
       "objectFiles": [],
-      "linkerScript": "script/fsp.ld",
-      "targetDeviceName": "R7FA6M4AF3CFB",
+      "linkerScript": "script/fsp.lld",
+      "targetDeviceName": "R7FA4L1BD4CFP",
       "entrySymbol": "Reset_Handler",
       "buildConfigurationName": "Release",
       "isPreBuildContentGenEnabled": false,
       "isPostBuildContentGenEnabled": false,
       "isTargetDeviceSupportsTrustZone": true,
-      "buildOptionsMap": {
-        "cmse": "true"
-      }
+      "buildOptionsMap": {}
     }
   }
 }

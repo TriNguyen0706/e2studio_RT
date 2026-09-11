@@ -7,18 +7,25 @@ extern "C" {
 
 #include "bsp_mcu_device_pn_cfg.h"
 #include "bsp_mcu_device_cfg.h"
-#include "../../../ra/fsp/src/bsp/mcu/ra6m4/bsp_mcu_info.h"
+#include "../../../ra/fsp/src/bsp/mcu/ra4l1/bsp_override.h"
+#include "../../../ra/fsp/src/bsp/mcu/ra4l1/bsp_mcu_info.h"
 #include "bsp_clock_cfg.h"
-#define BSP_MCU_GROUP_RA6M4 (1)
+#define BSP_MCU_GROUP_RA4L1 (1)
 #define BSP_LOCO_HZ                 (32768)
 #define BSP_MOCO_HZ                 (8000000)
 #define BSP_SUB_CLOCK_HZ            (32768)
 #if   BSP_CFG_HOCO_FREQUENCY == 0
-#define BSP_HOCO_HZ                 (16000000)
+#define BSP_HOCO_HZ                 (48000000)
 #elif BSP_CFG_HOCO_FREQUENCY == 1
-                #define BSP_HOCO_HZ                 (18000000)
+                #define BSP_HOCO_HZ                 (64000000)
             #elif BSP_CFG_HOCO_FREQUENCY == 2
-                #define BSP_HOCO_HZ                 (20000000)
+                #define BSP_HOCO_HZ                 (80000000)
+            #elif BSP_CFG_HOCO_FREQUENCY == 4
+                #define BSP_HOCO_HZ                 (24000000)
+            #elif BSP_CFG_HOCO_FREQUENCY == 5
+                #define BSP_HOCO_HZ                 (32000000)
+            #elif BSP_CFG_HOCO_FREQUENCY == 6
+                #define BSP_HOCO_HZ                 (40000000)
             #else
                 #error "Invalid HOCO frequency chosen (BSP_CFG_HOCO_FREQUENCY) in bsp_clock_cfg.h"
             #endif
@@ -26,8 +33,7 @@ extern "C" {
 #define BSP_CFG_FLL_ENABLE                 (0)
 
 #define BSP_CORTEX_VECTOR_TABLE_ENTRIES    (16U)
-#define BSP_VECTOR_TABLE_MAX_ENTRIES       (112U)
-#define BSP_CFG_INLINE_IRQ_FUNCTIONS       (1)
+#define BSP_VECTOR_TABLE_MAX_ENTRIES       (80U)
 
 #if defined(_RA_TZ_SECURE)
             #define BSP_TZ_SECURE_BUILD           (1)
@@ -74,72 +80,58 @@ extern "C" {
 /* Peripheral Security Attribution Register (PSAR) Settings */
 #ifndef BSP_TZ_CFG_PSARB
 #define BSP_TZ_CFG_PSARB (\
-            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 1) /* CAN1 */ | \
-            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 2) /* CAN0 */ | \
-            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 8) /* IIC1 */ | \
+            ((((RA_NOT_DEFINED > 0) ? 0U : 1U) << 0) /* UARTA0 */ & \
+            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 0) /* UARTA1 */ ) | \
+            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 4) /* I3C */ | \
+            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 5) /* IrDA */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 9) /* IIC0 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 11) /* USBFS */ | \
-            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 15) /* ETHERC */ | \
-            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 16) /* OSPI */ | \
-            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 18) /* SPI1 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 19) /* SPI0 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 22) /* SCI9 */ | \
-            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 23) /* SCI8 */ | \
-            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 24) /* SCI7 */ | \
-            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 25) /* SCI6 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 26) /* SCI5 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 27) /* SCI4 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 28) /* SCI3 */ | \
-            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 29) /* SCI2 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 30) /* SCI1 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 31) /* SCI0 */ | \
-            0x33f4f9) /* Unused */
+            0x23b7f5ce) /* Unused */
 #endif
 #ifndef BSP_TZ_CFG_PSARC
 #define BSP_TZ_CFG_PSARC (\
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 0) /* CAC */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 1) /* CRC */ | \
-            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 3) /* CTSU */ | \
+            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 3) /* CTSU2 */ | \
+            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 4) /* SLCDC */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 8) /* SSIE0 */ | \
-            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 12) /* SDHI0 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 13) /* DOC */ | \
-            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 31) /* SCE9 */ | \
-            0x7fffcef4) /* Unused */
+            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 27) /* CANFD0 */ | \
+            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 31) /* RSIP-E11A */ | \
+            0x77ffdee4) /* Unused */
 #endif
 #ifndef BSP_TZ_CFG_PSARD
 #define BSP_TZ_CFG_PSARD (\
-            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 0) /* AGT3 */ | \
-            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 1) /* AGT2 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 2) /* AGT1 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 3) /* AGT0 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 11) /* POEG3 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 12) /* POEG2 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 13) /* POEG1 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 14) /* POEG0 */ | \
-            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 15) /* ADC1 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 16) /* ADC0 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 20) /* DAC */ | \
-            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 22) /* TSN */ | \
-            0xffae07f0) /* Unused */
+            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 29) /* ACMPLP */ | \
+            0xdfee87f3) /* Unused */
 #endif
 #ifndef BSP_TZ_CFG_PSARE
 #define BSP_TZ_CFG_PSARE (\
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 0) /* WDT */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 1) /* IWDT */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 2) /* RTC */ | \
-            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 14) /* AGT5 */ | \
-            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 15) /* AGT4 */ | \
-            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 22) /* GPT9 */ | \
-            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 23) /* GPT8 */ | \
-            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 24) /* GPT7 */ | \
-            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 25) /* GPT6 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 26) /* GPT5 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 27) /* GPT4 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 28) /* GPT3 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 29) /* GPT2 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 30) /* GPT1 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 31) /* GPT0 */ | \
-            0x3f3ff8) /* Unused */
+            0x3fffff8) /* Unused */
 #endif
 #ifndef BSP_TZ_CFG_MSSAR
 #define BSP_TZ_CFG_MSSAR (\
@@ -174,25 +166,16 @@ extern "C" {
 #ifndef BSP_TZ_CFG_LPMSAR
 #define BSP_TZ_CFG_LPMSAR ((RA_NOT_DEFINED > 0) ? 0xFFFFFCEAU : 0xFFFFFFFFU)
 #endif
-/* Deep Standby Interrupt Factor Security Attribution Register. */
-#ifndef BSP_TZ_CFG_DPFSAR
-#define BSP_TZ_CFG_DPFSAR ((RA_NOT_DEFINED > 0) ? 0xF2E00000U : 0xFFFFFFFFU)
-#endif
 
 /* Security attribution for CGC registers. */
 #ifndef BSP_TZ_CFG_CGFSAR
 #if BSP_CFG_CLOCKS_SECURE
 /* Protect all CGC registers from Non-secure write access. */
-#define BSP_TZ_CFG_CGFSAR (0xFFFCE402U)
+#define BSP_TZ_CFG_CGFSAR (0xFBEAF602U)
 #else
 /* Allow Secure and Non-secure write access. */
 #define BSP_TZ_CFG_CGFSAR (0xFFFFFFFFU)
 #endif
-#endif
-
-/* Security attribution for Battery Backup registers. */
-#ifndef BSP_TZ_CFG_BBFSAR
-#define BSP_TZ_CFG_BBFSAR (0x00FFFFFF)
 #endif
 
 /* Security attribution for registers for IRQ channels. */
@@ -273,18 +256,10 @@ extern "C" {
 
 /* Security attribution for SRAM registers. */
 #ifndef BSP_TZ_CFG_SRAMSAR
-/* If the CGC registers are only accessible in Secure mode, than there is no reason for Non Secure applications to access
- * SRAM0WTEN and therefore there is no reason to access PRCR2. */
 #define BSP_TZ_CFG_SRAMSAR (\
         1 | \
-        ((BSP_CFG_CLOCKS_SECURE == 0) ? (1U << 1U) : 0U) | \
         4 | \
-        0xFFFFFFF8U)
-#endif
-
-/* Security attribution for Standby RAM registers. */
-#ifndef BSP_TZ_CFG_STBRAMSAR
-#define BSP_TZ_CFG_STBRAMSAR (0 | 0xFFFFFFF0U)
+        0xFFFFFFFAU)
 #endif
 
 /* Security attribution for the DMAC Bus Master MPU settings. */

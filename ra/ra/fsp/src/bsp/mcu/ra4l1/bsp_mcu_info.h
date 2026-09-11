@@ -5,43 +5,41 @@
 */
 
 /*******************************************************************************************************************//**
- * @ingroup BOARD_RA6M4_EK
- * @defgroup BOARD_RA6M4_EK_ETHERNET_PHY Board Ethernet Phy
- * @brief Ethernet Phy information for this board.
- *
- * This is code specific to the RA6M4_EK board.
- *
+ * @ingroup BSP_MCU
+ * @defgroup BSP_MCU_RA4L1 RA4L1
+ * @includedoc config_bsp_ra4l1_fsp.html
+ * @includedoc device_ra4l1_fsp_modules_list.html
  * @{
  **********************************************************************************************************************/
 
-#ifndef BSP_ETHERNET_PHY_H
-#define BSP_ETHERNET_PHY_H
+/** @} (end defgroup BSP_MCU_RA4L1) */
 
-/** Common macro for FSP header files. There is also a corresponding FSP_FOOTER macro at the end of this file. */
-FSP_HEADER
+#ifndef BSP_MCU_INFO_H
+#define BSP_MCU_INFO_H
+
+/***********************************************************************************************************************
+ * Includes   <System Includes> , "Project Includes"
+ **********************************************************************************************************************/
+
+/* BSP MCU Specific Includes. */
+#include "bsp_elc.h"
+#include "bsp_feature.h"
 
 /***********************************************************************************************************************
  * Macro definitions
  **********************************************************************************************************************/
-#define ETHER_PHY_CFG_TARGET_KSZ8091RNB_ENABLE    (1)
-#define ETHER_PHY_LSI_TYPE_KIT_COMPONENT          ETHER_PHY_LSI_TYPE_KSZ8091RNB
-#define BOARD_PHY_REF_CLK                         (1)
 
 /***********************************************************************************************************************
  * Typedef definitions
  **********************************************************************************************************************/
+typedef elc_event_t bsp_interrupt_event_t;
 
 /***********************************************************************************************************************
  * Exported global variables
  **********************************************************************************************************************/
 
 /***********************************************************************************************************************
- * Public Functions
+ * Exported global functions (to be accessed by other files)
  **********************************************************************************************************************/
 
-/** Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
-FSP_FOOTER
-
 #endif
-
-/** @} (end defgroup BOARD_RA6M4_EK_ETHERNET_PHY) */

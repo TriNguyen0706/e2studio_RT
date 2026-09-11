@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>ext</name>
+	<name>ex</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -29,6 +29,5 @@
 		<nature>com.renesas.cdt.build.cmake.arm.armCmakeNature</nature>
 		<nature>com.renesas.cdt.ddsc.contentgen.ddscNature</nature>
 		<nature>com.renesas.cdt.ra.contentgen.raNature</nature>
-		<nature>com.renesas.cdt.ddsc.contentgen.ddscTzSecureNature</nature>
 	</natures>
 </projectDescription>

@@ -8,7 +8,7 @@
 #define BSP_ELC_H
 
 /*******************************************************************************************************************//**
- * @addtogroup BSP_MCU_RA6M4
+ * @addtogroup BSP_MCU_RA4L1
  * @{
  **********************************************************************************************************************/
 
@@ -33,7 +33,7 @@
 /** Sources of event signals to be linked to other peripherals or the CPU
  * @note This list is device specific.
  * */
-typedef enum e_elc_event_ra6m4
+typedef enum e_elc_event_ra4l1
 {
     ELC_EVENT_NONE                          = (0x0),   // Link disabled
     ELC_EVENT_ICU_IRQ0                      = (0x001), // External pin interrupt 0
@@ -70,29 +70,27 @@ typedef enum e_elc_event_ra6m4
     ELC_EVENT_LVD_LVD2                      = (0x039), // Voltage monitor 2 interrupt
     ELC_EVENT_CGC_MOSC_STOP                 = (0x03B), // Main Clock oscillation stop
     ELC_EVENT_LPM_SNOOZE_REQUEST            = (0x03C), // Snooze entry
+    ELC_EVENT_CGC_SOSC_STOP                 = (0x03D), // Sub oscillation stop
     ELC_EVENT_AGT0_INT                      = (0x040), // AGT interrupt
     ELC_EVENT_AGT0_COMPARE_A                = (0x041), // Compare match A
     ELC_EVENT_AGT0_COMPARE_B                = (0x042), // Compare match B
     ELC_EVENT_AGT1_INT                      = (0x043), // AGT interrupt
     ELC_EVENT_AGT1_COMPARE_A                = (0x044), // Compare match A
     ELC_EVENT_AGT1_COMPARE_B                = (0x045), // Compare match B
-    ELC_EVENT_AGT2_INT                      = (0x046), // AGT interrupt
-    ELC_EVENT_AGT2_COMPARE_A                = (0x047), // Compare match A
-    ELC_EVENT_AGT2_COMPARE_B                = (0x048), // Compare match B
-    ELC_EVENT_AGT3_INT                      = (0x049), // AGT interrupt
-    ELC_EVENT_AGT3_COMPARE_A                = (0x04A), // Compare match A
-    ELC_EVENT_AGT3_COMPARE_B                = (0x04B), // Compare match B
-    ELC_EVENT_AGT4_INT                      = (0x04C), // AGT interrupt
-    ELC_EVENT_AGT4_COMPARE_A                = (0x04D), // Compare match A
-    ELC_EVENT_AGT4_COMPARE_B                = (0x04E), // Compare match B
-    ELC_EVENT_AGT5_INT                      = (0x04F), // AGT interrupt
-    ELC_EVENT_AGT5_COMPARE_A                = (0x050), // Compare match A
-    ELC_EVENT_AGT5_COMPARE_B                = (0x051), // Compare match B
     ELC_EVENT_IWDT_UNDERFLOW                = (0x052), // IWDT underflow
     ELC_EVENT_WDT_UNDERFLOW                 = (0x053), // WDT underflow
     ELC_EVENT_RTC_ALARM                     = (0x054), // Alarm interrupt
     ELC_EVENT_RTC_PERIOD                    = (0x055), // Periodic interrupt
     ELC_EVENT_RTC_CARRY                     = (0x056), // Carry interrupt
+    ELC_EVENT_CAN_RXF                       = (0x059), // Global receive FIFO interrupt
+    ELC_EVENT_CAN_GLERR                     = (0x05A), // Global error
+    ELC_EVENT_CAN_DMAREQ0                   = (0x05B), // RX fifo DMA request 0
+    ELC_EVENT_CAN_DMAREQ1                   = (0x05C), // RX fifo DMA request 1
+    ELC_EVENT_CAN0_TX                       = (0x063), // Transmit interrupt
+    ELC_EVENT_CAN0_CHERR                    = (0x064), // Channel  error
+    ELC_EVENT_CAN0_COMFRX                   = (0x065), // Common FIFO receive interrupt
+    ELC_EVENT_CAN0_CF_DMAREQ                = (0x066), // Channel  DMA request
+    ELC_EVENT_CAN0_RXMB                     = (0x067), // Receive message buffer interrupt
     ELC_EVENT_USBFS_FIFO_0                  = (0x06B), // DMA/DTC transfer request 0
     ELC_EVENT_USBFS_FIFO_1                  = (0x06C), // DMA/DTC transfer request 1
     ELC_EVENT_USBFS_INT                     = (0x06D), // USBFS interrupt
@@ -102,33 +100,23 @@ typedef enum e_elc_event_ra6m4
     ELC_EVENT_IIC0_TEI                      = (0x075), // Transmit end
     ELC_EVENT_IIC0_ERI                      = (0x076), // Transfer error
     ELC_EVENT_IIC0_WUI                      = (0x077), // Wakeup interrupt
-    ELC_EVENT_IIC1_RXI                      = (0x078), // Receive data full
-    ELC_EVENT_IIC1_TXI                      = (0x079), // Transmit data empty
-    ELC_EVENT_IIC1_TEI                      = (0x07A), // Transmit end
-    ELC_EVENT_IIC1_ERI                      = (0x07B), // Transfer error
-    ELC_EVENT_SDHIMMC0_ACCS                 = (0x082), // Card access
-    ELC_EVENT_SDHIMMC0_SDIO                 = (0x083), // SDIO access
-    ELC_EVENT_SDHIMMC0_CARD                 = (0x084), // Card detect
-    ELC_EVENT_SDHIMMC0_DMA_REQ              = (0x085), // DMA transfer request
     ELC_EVENT_SSI0_TXI                      = (0x08A), // Transmit data empty
     ELC_EVENT_SSI0_RXI                      = (0x08B), // Receive data full
     ELC_EVENT_SSI0_INT                      = (0x08D), // Error interrupt
+    ELC_EVENT_UARTA0_TXI                    = (0x08E), // UARTA0 transmission transfer end or buffer empty interrupt
+    ELC_EVENT_UARTA0_RXI                    = (0x08F), // UARTA0 reception transfer end
+    ELC_EVENT_UARTA0_ERRI                   = (0x090), // UARTA0 reception communication error occurrence
+    ELC_EVENT_UARTA1_TXI                    = (0x091), // UARTA1 transmission transfer end or buffer empty interrupt
+    ELC_EVENT_UARTA1_RXI                    = (0x092), // UARTA1 reception transfer end
+    ELC_EVENT_UARTA1_ERRI                   = (0x093), // UARTA1 reception communication error occurrence
+    ELC_EVENT_ACMPLP0_INT                   = (0x094), // Low Power Comparator channel 0 interrupt
+    ELC_EVENT_ACMPLP1_INT                   = (0x095), // Low Power Comparator channel 1 interrupt
     ELC_EVENT_CTSU_WRITE                    = (0x09A), // Write request interrupt
     ELC_EVENT_CTSU_READ                     = (0x09B), // Measurement data transfer request interrupt
     ELC_EVENT_CTSU_END                      = (0x09C), // Measurement end interrupt
     ELC_EVENT_CAC_FREQUENCY_ERROR           = (0x09E), // Frequency error interrupt
     ELC_EVENT_CAC_MEASUREMENT_END           = (0x09F), // Measurement end interrupt
     ELC_EVENT_CAC_OVERFLOW                  = (0x0A0), // Overflow interrupt
-    ELC_EVENT_CAN0_ERROR                    = (0x0A1), // Error interrupt
-    ELC_EVENT_CAN0_FIFO_RX                  = (0x0A2), // Receive FIFO interrupt
-    ELC_EVENT_CAN0_FIFO_TX                  = (0x0A3), // Transmit FIFO interrupt
-    ELC_EVENT_CAN0_MAILBOX_RX               = (0x0A4), // Reception complete interrupt
-    ELC_EVENT_CAN0_MAILBOX_TX               = (0x0A5), // Transmission complete interrupt
-    ELC_EVENT_CAN1_ERROR                    = (0x0A6), // Error interrupt
-    ELC_EVENT_CAN1_FIFO_RX                  = (0x0A7), // Receive FIFO interrupt
-    ELC_EVENT_CAN1_FIFO_TX                  = (0x0A8), // Transmit FIFO interrupt
-    ELC_EVENT_CAN1_MAILBOX_RX               = (0x0A9), // Reception complete interrupt
-    ELC_EVENT_CAN1_MAILBOX_TX               = (0x0AA), // Transmission complete interrupt
     ELC_EVENT_IOPORT_EVENT_1                = (0x0B1), // Port 1 event
     ELC_EVENT_IOPORT_EVENT_2                = (0x0B2), // Port 2 event
     ELC_EVENT_IOPORT_EVENT_3                = (0x0B3), // Port 3 event
@@ -165,6 +153,7 @@ typedef enum e_elc_event_ra6m4
     ELC_EVENT_GPT2_COMPARE_F                = (0x0D7), // Compare match F
     ELC_EVENT_GPT2_COUNTER_OVERFLOW         = (0x0D8), // Overflow
     ELC_EVENT_GPT2_COUNTER_UNDERFLOW        = (0x0D9), // Underflow
+    ELC_EVENT_GPT2_PC                       = (0x0DA), // Period count function finish
     ELC_EVENT_GPT3_CAPTURE_COMPARE_A        = (0x0DB), // Capture/Compare match A
     ELC_EVENT_GPT3_CAPTURE_COMPARE_B        = (0x0DC), // Capture/Compare match B
     ELC_EVENT_GPT3_COMPARE_C                = (0x0DD), // Compare match C
@@ -173,6 +162,7 @@ typedef enum e_elc_event_ra6m4
     ELC_EVENT_GPT3_COMPARE_F                = (0x0E0), // Compare match F
     ELC_EVENT_GPT3_COUNTER_OVERFLOW         = (0x0E1), // Overflow
     ELC_EVENT_GPT3_COUNTER_UNDERFLOW        = (0x0E2), // Underflow
+    ELC_EVENT_GPT3_PC                       = (0x0E3), // Period count function finish
     ELC_EVENT_GPT4_CAPTURE_COMPARE_A        = (0x0E4), // Capture/Compare match A
     ELC_EVENT_GPT4_CAPTURE_COMPARE_B        = (0x0E5), // Capture/Compare match B
     ELC_EVENT_GPT4_COMPARE_C                = (0x0E6), // Compare match C
@@ -190,40 +180,6 @@ typedef enum e_elc_event_ra6m4
     ELC_EVENT_GPT5_COMPARE_F                = (0x0F2), // Compare match F
     ELC_EVENT_GPT5_COUNTER_OVERFLOW         = (0x0F3), // Overflow
     ELC_EVENT_GPT5_COUNTER_UNDERFLOW        = (0x0F4), // Underflow
-    ELC_EVENT_GPT5_PC                       = (0x0F5), // Period count function finish
-    ELC_EVENT_GPT6_CAPTURE_COMPARE_A        = (0x0F6), // Capture/Compare match A
-    ELC_EVENT_GPT6_CAPTURE_COMPARE_B        = (0x0F7), // Capture/Compare match B
-    ELC_EVENT_GPT6_COMPARE_C                = (0x0F8), // Compare match C
-    ELC_EVENT_GPT6_COMPARE_D                = (0x0F9), // Compare match D
-    ELC_EVENT_GPT6_COMPARE_E                = (0x0FA), // Compare match E
-    ELC_EVENT_GPT6_COMPARE_F                = (0x0FB), // Compare match F
-    ELC_EVENT_GPT6_COUNTER_OVERFLOW         = (0x0FC), // Overflow
-    ELC_EVENT_GPT6_COUNTER_UNDERFLOW        = (0x0FD), // Underflow
-    ELC_EVENT_GPT6_PC                       = (0x0FE), // Period count function finish
-    ELC_EVENT_GPT7_CAPTURE_COMPARE_A        = (0x0FF), // Capture/Compare match A
-    ELC_EVENT_GPT7_CAPTURE_COMPARE_B        = (0x100), // Capture/Compare match B
-    ELC_EVENT_GPT7_COMPARE_C                = (0x101), // Compare match C
-    ELC_EVENT_GPT7_COMPARE_D                = (0x102), // Compare match D
-    ELC_EVENT_GPT7_COMPARE_E                = (0x103), // Compare match E
-    ELC_EVENT_GPT7_COMPARE_F                = (0x104), // Compare match F
-    ELC_EVENT_GPT7_COUNTER_OVERFLOW         = (0x105), // Overflow
-    ELC_EVENT_GPT7_COUNTER_UNDERFLOW        = (0x106), // Underflow
-    ELC_EVENT_GPT8_CAPTURE_COMPARE_A        = (0x108), // Capture/Compare match A
-    ELC_EVENT_GPT8_CAPTURE_COMPARE_B        = (0x109), // Capture/Compare match B
-    ELC_EVENT_GPT8_COMPARE_C                = (0x10A), // Compare match C
-    ELC_EVENT_GPT8_COMPARE_D                = (0x10B), // Compare match D
-    ELC_EVENT_GPT8_COMPARE_E                = (0x10C), // Compare match E
-    ELC_EVENT_GPT8_COMPARE_F                = (0x10D), // Compare match F
-    ELC_EVENT_GPT8_COUNTER_OVERFLOW         = (0x10E), // Overflow
-    ELC_EVENT_GPT8_COUNTER_UNDERFLOW        = (0x10F), // Underflow
-    ELC_EVENT_GPT9_CAPTURE_COMPARE_A        = (0x111), // Capture/Compare match A
-    ELC_EVENT_GPT9_CAPTURE_COMPARE_B        = (0x112), // Capture/Compare match B
-    ELC_EVENT_GPT9_COMPARE_C                = (0x113), // Compare match C
-    ELC_EVENT_GPT9_COMPARE_D                = (0x114), // Compare match D
-    ELC_EVENT_GPT9_COMPARE_E                = (0x115), // Compare match E
-    ELC_EVENT_GPT9_COMPARE_F                = (0x116), // Compare match F
-    ELC_EVENT_GPT9_COUNTER_OVERFLOW         = (0x117), // Overflow
-    ELC_EVENT_GPT9_COUNTER_UNDERFLOW        = (0x118), // Underflow
     ELC_EVENT_OPS_UVW_EDGE                  = (0x150), // UVW edge event
     ELC_EVENT_ADC0_SCAN_END                 = (0x160), // End of A/D scanning operation
     ELC_EVENT_ADC0_SCAN_END_B               = (0x161), // A/D scan end interrupt for group B
@@ -231,13 +187,6 @@ typedef enum e_elc_event_ra6m4
     ELC_EVENT_ADC0_WINDOW_B                 = (0x163), // Window B Compare match interrupt
     ELC_EVENT_ADC0_COMPARE_MATCH            = (0x164), // Compare match
     ELC_EVENT_ADC0_COMPARE_MISMATCH         = (0x165), // Compare mismatch
-    ELC_EVENT_ADC1_SCAN_END                 = (0x166), // End of A/D scanning operation
-    ELC_EVENT_ADC1_SCAN_END_B               = (0x167), // A/D scan end interrupt for group B
-    ELC_EVENT_ADC1_WINDOW_A                 = (0x168), // Window A Compare match interrupt
-    ELC_EVENT_ADC1_WINDOW_B                 = (0x169), // Window B Compare match interrupt
-    ELC_EVENT_ADC1_COMPARE_MATCH            = (0x16A), // Compare match
-    ELC_EVENT_ADC1_COMPARE_MISMATCH         = (0x16B), // Compare mismatch
-    ELC_EVENT_EDMAC0_EINT                   = (0x16F), // EDMAC 0 interrupt
     ELC_EVENT_SCI0_RXI                      = (0x180), // Receive data full
     ELC_EVENT_SCI0_TXI                      = (0x181), // Transmit data empty
     ELC_EVENT_SCI0_TEI                      = (0x182), // Transmit end
@@ -248,10 +197,6 @@ typedef enum e_elc_event_ra6m4
     ELC_EVENT_SCI1_TXI                      = (0x187), // Transmit data empty
     ELC_EVENT_SCI1_TEI                      = (0x188), // Transmit end
     ELC_EVENT_SCI1_ERI                      = (0x189), // Receive error
-    ELC_EVENT_SCI2_RXI                      = (0x18C), // Receive data full
-    ELC_EVENT_SCI2_TXI                      = (0x18D), // Transmit data empty
-    ELC_EVENT_SCI2_TEI                      = (0x18E), // Transmit end
-    ELC_EVENT_SCI2_ERI                      = (0x18F), // Receive error
     ELC_EVENT_SCI3_RXI                      = (0x192), // Receive data full
     ELC_EVENT_SCI3_TXI                      = (0x193), // Transmit data empty
     ELC_EVENT_SCI3_TEI                      = (0x194), // Transmit end
@@ -267,21 +212,6 @@ typedef enum e_elc_event_ra6m4
     ELC_EVENT_SCI5_TEI                      = (0x1A0), // Transmit end
     ELC_EVENT_SCI5_ERI                      = (0x1A1), // Receive error
     ELC_EVENT_SCI5_AM                       = (0x1A2), // Address match event
-    ELC_EVENT_SCI6_RXI                      = (0x1A4), // Receive data full
-    ELC_EVENT_SCI6_TXI                      = (0x1A5), // Transmit data empty
-    ELC_EVENT_SCI6_TEI                      = (0x1A6), // Transmit end
-    ELC_EVENT_SCI6_ERI                      = (0x1A7), // Receive error
-    ELC_EVENT_SCI6_AM                       = (0x1A8), // Address match event
-    ELC_EVENT_SCI7_RXI                      = (0x1AA), // Receive data full
-    ELC_EVENT_SCI7_TXI                      = (0x1AB), // Transmit data empty
-    ELC_EVENT_SCI7_TEI                      = (0x1AC), // Transmit end
-    ELC_EVENT_SCI7_ERI                      = (0x1AD), // Receive error
-    ELC_EVENT_SCI7_AM                       = (0x1AE), // Address match event
-    ELC_EVENT_SCI8_RXI                      = (0x1B0), // Receive data full
-    ELC_EVENT_SCI8_TXI                      = (0x1B1), // Transmit data empty
-    ELC_EVENT_SCI8_TEI                      = (0x1B2), // Transmit end
-    ELC_EVENT_SCI8_ERI                      = (0x1B3), // Receive error
-    ELC_EVENT_SCI8_AM                       = (0x1B4), // Address match event
     ELC_EVENT_SCI9_RXI                      = (0x1B6), // Receive data full
     ELC_EVENT_SCI9_TXI                      = (0x1B7), // Transmit data empty
     ELC_EVENT_SCI9_TEI                      = (0x1B8), // Transmit end
@@ -295,28 +225,28 @@ typedef enum e_elc_event_ra6m4
     ELC_EVENT_SCI1_SCIX2                    = (0x1BE), // SCI0 extended serial mode event 2
     ELC_EVENT_SCIX0_SCIX3                   = (0x1BF), // SCI0 extended serial mode event 3
     ELC_EVENT_SCI1_SCIX3                    = (0x1BF), // SCI0 extended serial mode event 3
-    ELC_EVENT_SCIX1_SCIX0                   = (0x1C0), // SCI1 extended serial mode event 0
-    ELC_EVENT_SCI2_SCIX0                    = (0x1C0), // SCI1 extended serial mode event 0
-    ELC_EVENT_SCIX1_SCIX1                   = (0x1C1), // SCI1 extended serial mode event 1
-    ELC_EVENT_SCI2_SCIX1                    = (0x1C1), // SCI1 extended serial mode event 1
-    ELC_EVENT_SCIX1_SCIX2                   = (0x1C2), // SCI1 extended serial mode event 2
-    ELC_EVENT_SCI2_SCIX2                    = (0x1C2), // SCI1 extended serial mode event 2
-    ELC_EVENT_SCIX1_SCIX3                   = (0x1C3), // SCI1 extended serial mode event 3
-    ELC_EVENT_SCI2_SCIX3                    = (0x1C3), // SCI1 extended serial mode event 3
     ELC_EVENT_SPI0_RXI                      = (0x1C4), // Receive buffer full
     ELC_EVENT_SPI0_TXI                      = (0x1C5), // Transmit buffer empty
     ELC_EVENT_SPI0_IDLE                     = (0x1C6), // Idle
     ELC_EVENT_SPI0_ERI                      = (0x1C7), // Error
     ELC_EVENT_SPI0_TEI                      = (0x1C8), // Transmission complete event
-    ELC_EVENT_SPI1_RXI                      = (0x1C9), // Receive buffer full
-    ELC_EVENT_SPI1_TXI                      = (0x1CA), // Transmit buffer empty
-    ELC_EVENT_SPI1_IDLE                     = (0x1CB), // Idle
-    ELC_EVENT_SPI1_ERI                      = (0x1CC), // Error
-    ELC_EVENT_SPI1_TEI                      = (0x1CD), // Transmission complete event
-    ELC_EVENT_OSPI_INT                      = (0x1D9), // OSPI interrupt
+    ELC_EVENT_CAN0_MRAM_ERI                 = (0x1D0), // CANFD0 ECC error
     ELC_EVENT_QSPI_INT                      = (0x1DA), // QSPI interrupt
     ELC_EVENT_DOC_INT                       = (0x1DB), // Data operation circuit interrupt
-    ELC_EVENT_SCE_TADI                      = (0x1E9)  // SCE Tamper Detection
+    ELC_EVENT_I3C0_RESPONSE                 = (0x1DC), // Response status buffer full
+    ELC_EVENT_I3C0_COMMAND                  = (0x1DD), // Command buffer empty
+    ELC_EVENT_I3C0_IBI                      = (0x1DE), // IBI status buffer full
+    ELC_EVENT_I3C0_RX                       = (0x1DF), // Receive
+    ELC_EVENT_IICB0_RXI                     = (0x1DF), // Receive
+    ELC_EVENT_I3C0_TX                       = (0x1E0), // Transmit
+    ELC_EVENT_IICB0_TXI                     = (0x1E0), // Transmit
+    ELC_EVENT_I3C0_RCV_STATUS               = (0x1E1), // Receive status buffer full
+    ELC_EVENT_I3C0_TEND                     = (0x1E6), // Transmit end
+    ELC_EVENT_IICB0_TEI                     = (0x1E6), // Transmit end
+    ELC_EVENT_I3C0_EEI                      = (0x1E7), // Error
+    ELC_EVENT_IICB0_ERI                     = (0x1E7), // Error
+    ELC_EVENT_I3C0_WU                       = (0x1EC), // Wake-up Condition Detection interrupt
+    ELC_EVENT_RSIP_TADI                     = (0x1EE)  // RSIP Tamper Detection
 } elc_event_t;
 
 #define BSP_PRV_VECT_ENUM(event,group)  (ELC_ ## event)
@@ -338,10 +268,7 @@ typedef enum e_elc_peripheral
     ELC_PERIPHERAL_GPT_H         = (7),
     ELC_PERIPHERAL_ADC0          = (8),
     ELC_PERIPHERAL_ADC0_B        = (9),
-    ELC_PERIPHERAL_ADC1          = (10),
-    ELC_PERIPHERAL_ADC1_B        = (11),
     ELC_PERIPHERAL_DAC0          = (12),
-    ELC_PERIPHERAL_DAC1          = (13),
     ELC_PERIPHERAL_IOPORT1       = (14),
     ELC_PERIPHERAL_IOPORT2       = (15),
     ELC_PERIPHERAL_IOPORT3       = (16),
@@ -350,9 +277,9 @@ typedef enum e_elc_peripheral
 } elc_peripheral_t;
 
 /** Positions of event link set registers (ELSRs) available on this MCU */
-#define BSP_ELC_PERIPHERAL_MASK  (0x0007FFFFU)
+#define BSP_ELC_PERIPHERAL_MASK  (0x0007D3FFU)
 
 /* UNCRUSTIFY-ON */
-/** @} (end addtogroup BSP_MCU_RA6M4) */
+/** @} (end addtogroup BSP_MCU_RA4L1) */
 
 #endif

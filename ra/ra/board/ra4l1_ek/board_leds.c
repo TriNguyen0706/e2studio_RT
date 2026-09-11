@@ -5,25 +5,16 @@
 */
 
 /*******************************************************************************************************************//**
- * @ingroup BSP_MCU
- * @defgroup BSP_MCU_RA6M4 RA6M4
- * @includedoc config_bsp_ra6m4_fsp.html
- * @includedoc device_ra6m4_fsp_modules_list.html
+ * @addtogroup BOARD_RA4L1_EK_LEDS
+ *
  * @{
  **********************************************************************************************************************/
 
-/** @} (end defgroup BSP_MCU_RA6M4) */
-
-#ifndef BSP_MCU_INFO_H
-#define BSP_MCU_INFO_H
-
 /***********************************************************************************************************************
- * Includes   <System Includes> , "Project Includes"
+ * Includes
  **********************************************************************************************************************/
-
-/* BSP MCU Specific Includes. */
-#include "bsp_elc.h"
-#include "bsp_feature.h"
+#include "bsp_api.h"
+#if defined(BOARD_RA4L1_EK)
 
 /***********************************************************************************************************************
  * Macro definitions
@@ -32,14 +23,35 @@
 /***********************************************************************************************************************
  * Typedef definitions
  **********************************************************************************************************************/
-typedef elc_event_t bsp_interrupt_event_t;
 
 /***********************************************************************************************************************
- * Exported global variables
+ * Private global variables and functions
  **********************************************************************************************************************/
 
+/** Array of LED IOPORT pins. */
+static const uint16_t g_bsp_prv_leds[] =
+{
+    (uint16_t) BSP_IO_PORT_06_PIN_09,  ///< LED1
+    (uint16_t) BSP_IO_PORT_06_PIN_10,  ///< LED2
+    (uint16_t) BSP_IO_PORT_06_PIN_01,  ///< LED3
+};
+
 /***********************************************************************************************************************
- * Exported global functions (to be accessed by other files)
+ * Exported global variables (to be accessed by other files)
+ **********************************************************************************************************************/
+
+/** Structure with LED information for this board. */
+
+const bsp_leds_t g_bsp_leds =
+{
+    .led_count = (uint16_t) ((sizeof(g_bsp_prv_leds) / sizeof(g_bsp_prv_leds[0]))),
+    .p_leds    = &g_bsp_prv_leds[0]
+};
+
+/***********************************************************************************************************************
+ * Exported global variables (to be accessed by other files)
  **********************************************************************************************************************/
 
 #endif
+
+/** @} (end addtogroup BOARD_RA4L1_EK_LEDS) */

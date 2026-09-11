@@ -7,7 +7,7 @@
       "request": "launch",
       "target": {
         "deviceFamily": "RA",
-        "device": "R7FA6M4AF",
+        "device": "R7FA4L1BD",
         "debuggerType": "WEBUSBJLINKARM"
       },
       "projectRoot": "${workspaceFolder}/build/Debug",

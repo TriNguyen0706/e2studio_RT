@@ -40,7 +40,7 @@ endif()
 cmake_minimum_required(VERSION 3.16.4)
 
 # Project configuration
-project(ext
+project(ex
 	VERSION 1.0.0
 	LANGUAGES C CXX ASM)
 

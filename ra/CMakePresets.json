@@ -10,21 +10,21 @@
       "renesasPresetVersion": 1
     }
   },
-  "$comment": "This preset is intended for CI and Web IDE usage only. Environment variables for the toolchain path (ARM_GCC_TOOLCHAIN_PATH) and the FSP Smart Configurator path (RASC_EXE_PATH) must be defined to use it.",
+  "$comment": "This preset is intended for CI and Web IDE usage only. Environment variables for the toolchain path (ARM_LLVM_TOOLCHAIN_PATH) and the FSP Smart Configurator path (RASC_EXE_PATH) must be defined to use it.",
   "configurePresets": [
     {
       "name": "EnvironmentSetupConfig",
       "hidden": true,
       "inherits": "OSConfig",
-      "toolchainFile": "${sourceDir}/cmake/gcc.cmake",
+      "toolchainFile": "${sourceDir}/cmake/llvm.cmake",
       "environment": {
-        "ARM_GCC_TOOLCHAIN_PATH": "$penv{ARM_GCC_TOOLCHAIN_PATH}",
+        "ARM_LLVM_TOOLCHAIN_PATH": "$penv{ARM_LLVM_TOOLCHAIN_PATH}",
         "RASC_EXE_PATH": "$penv{RASC_EXE_PATH}",
         "NINJA_PROGRAM": "ninja"
       },
       "cacheVariables": {
         "CMAKE_MAKE_PROGRAM": "$env{NINJA_PROGRAM}",
-        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/cmake/gcc.cmake"
+        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/cmake/llvm.cmake"
       }
     },
     {
@@ -67,7 +67,7 @@
           },
           {
             "type": "matches",
-            "string": "$env{ARM_GCC_TOOLCHAIN_PATH}",
+            "string": "$env{ARM_LLVM_TOOLCHAIN_PATH}",
             "regex": ".+"
           }
         ]
@@ -93,7 +93,7 @@
           },
           {
             "type": "matches",
-            "string": "$env{ARM_GCC_TOOLCHAIN_PATH}",
+            "string": "$env{ARM_LLVM_TOOLCHAIN_PATH}",
             "regex": ".+"
           }
         ]

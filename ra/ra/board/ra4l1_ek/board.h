@@ -5,23 +5,30 @@
 */
 
 /*******************************************************************************************************************//**
- * @addtogroup BOARD_RA6M4_EK
- * @brief Board specific code for the RA6M4-EK Board
+ * @ingroup BOARDS
+ * @defgroup BOARD_RA4L1_EK for the EK-RA4L1 board
+ * @brief BSP for the EK-RA4L1 Board
  *
- * This include file is specific to the RA6M4-EK board.
+ * The EK-RA4L1 is a development kit for the Renesas R7FA4L1BD4CFP microcontroller in a LQFP100 package.
  *
  * @{
  **********************************************************************************************************************/
 
-#ifndef BOARD_INIT_H
-#define BOARD_INIT_H
+#ifndef BOARD_H
+#define BOARD_H
 
-/** Common macro for FSP header files. There is also a corresponding FSP_FOOTER macro at the end of this file. */
-FSP_HEADER
+/***********************************************************************************************************************
+ * Includes   <System Includes> , "Project Includes"
+ **********************************************************************************************************************/
+
+/* BSP Board Specific Includes. */
+#include "board_init.h"
+#include "board_leds.h"
 
 /***********************************************************************************************************************
  * Macro definitions
  **********************************************************************************************************************/
+#define BOARD_RA4L1_EK
 
 /***********************************************************************************************************************
  * Typedef definitions
@@ -34,11 +41,7 @@ FSP_HEADER
 /***********************************************************************************************************************
  * Exported global functions (to be accessed by other files)
  **********************************************************************************************************************/
-void bsp_init(void * p_args);
 
-/** Common macro for FSP header files. There is also a corresponding FSP_HEADER macro at the top of this file. */
-FSP_FOOTER
+/** @} (end defgroup BOARD_RA4L1_EK) */
 
 #endif
-
-/** @} (end addtogroup BOARD_RA6M4_EK) */

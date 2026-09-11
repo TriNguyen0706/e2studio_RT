@@ -16,14 +16,14 @@
     "request": "launch",
     "target": {
       "deviceFamily": "RA",
-      "device": "R7FA6M4AF",
+      "device": "R7FA4L1BD",
       "debuggerType": "SEGGERJLINKARM"
     },
     "cwd": "${command:renesas.debug.supportFolder}",
     "images": []
   },
   "clangd.arguments": [
-    "--query-driver=${env:ARM_GCC_TOOLCHAIN_PATH}*",
+    "--query-driver=${env:ARM_LLVM_TOOLCHAIN_PATH}*",
     "--compile-commands-dir=${workspaceFolder}",
     "--background-index"
   ],
