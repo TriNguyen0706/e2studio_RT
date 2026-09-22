@@ -29,5 +29,6 @@
 		<nature>com.renesas.cdt.build.cmake.arm.armCmakeNature</nature>
 		<nature>com.renesas.cdt.ddsc.contentgen.ddscNature</nature>
 		<nature>com.renesas.cdt.ra.contentgen.raNature</nature>
+		<nature>com.renesas.tools.r365.ide.r365Nature</nature>
 	</natures>
 </projectDescription>
