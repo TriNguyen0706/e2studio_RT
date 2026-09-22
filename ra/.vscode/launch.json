@@ -6,7 +6,7 @@
       "request": "launch",
       "target": {
         "deviceFamily": "RA",
-        "device": "R7FA4L1BD",
+        "device": "R7FA6M2AF",
         "debuggerType": "SEGGERJLINKARM"
       },
       "images": []

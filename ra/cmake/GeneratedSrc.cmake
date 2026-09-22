@@ -31,7 +31,7 @@ if (NOT IDE_SUPPORTS_PRE_POST_BUILD_ACTIONS)
 		execute_process(
 			COMMAND_ECHO STDOUT
 			COMMAND
-				${RASC_EXE_PATH} -nosplash --launcher.suppressErrors --generate --devicefamily ra --compiler LLVMARM --toolchainversion ${CMAKE_C_COMPILER_VERSION} --buildconfiguration ${CMAKE_BUILD_TYPE} ${CMAKE_CURRENT_SOURCE_DIR}/configuration.xml
+				${RASC_EXE_PATH} -nosplash --launcher.suppressErrors --generate --devicefamily ra --compiler GCC --toolchainversion ${CMAKE_C_COMPILER_VERSION} --buildconfiguration ${CMAKE_BUILD_TYPE} ${CMAKE_CURRENT_SOURCE_DIR}/configuration.xml
 			ERROR_FILE  ${CMAKE_CURRENT_BINARY_DIR}/rasc_conf_cmd_err.txt
 			RESULT_VARIABLE resultVar
 			TIMEOUT 600
@@ -79,6 +79,14 @@ list(REMOVE_ITEM Source_Files ${EXCLUDED_SOURCE_FILES})
 
 
 file(GLOB_RECURSE Companion_Source_Files
+    ${CMAKE_CURRENT_SOURCE_DIR}/ra/aws/*.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/ra/aws/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/ra/aws/*.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/ra/aws/*.cxx
+    ${CMAKE_CURRENT_SOURCE_DIR}/ra/aws/*.S
+    ${CMAKE_CURRENT_SOURCE_DIR}/ra/aws/*.asm
+    ${CMAKE_CURRENT_SOURCE_DIR}/ra/aws/*.sx
+    ${CMAKE_CURRENT_SOURCE_DIR}/ra/aws/*.msa
     ${CMAKE_CURRENT_SOURCE_DIR}/ra/arm/*.c
     ${CMAKE_CURRENT_SOURCE_DIR}/ra/arm/*.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/ra/arm/*.cc
@@ -98,16 +106,21 @@ add_executable(${PROJECT_NAME}.elf ${ALL_FILES})
 
 
 
-target_compile_options(${PROJECT_NAME}.elf
-                       PRIVATE
-                       $<$<CONFIG:Debug>:
-                           $<$<COMPILE_LANGUAGE:C>:${RASC_C_DEBUG_FLAGS}>
-                           $<$<COMPILE_LANGUAGE:CXX>:${RASC_CXX_DEBUG_FLAGS}>
-                           $<$<COMPILE_LANGUAGE:ASM>:${RASC_ASM_DEBUG_FLAGS}>
-                       >
-                       $<$<CONFIG:Release>:${RASC_RELEASE_FLAGS}>
-                       $<$<CONFIG:MinSizeRel>:${RASC_MIN_SIZE_RELEASE_FLAGS}>
-                       $<$<CONFIG:RelWithDebInfo>:${RASC_RELEASE_WITH_DEBUG_INFO}>)
+
+set(CMAKE_ASM_FLAGS_DEBUG "${RASC_ASM_DEBUG_FLAGS}")
+set(CMAKE_ASM_FLAGS_MINSIZEREL "${RASC_ASM_MIN_SIZE_RELEASE_FLAGS}")
+set(CMAKE_ASM_FLAGS_RELEASE "${RASC_ASM_RELEASE_FLAGS}")
+set(CMAKE_ASM_FLAGS_RELWITHDEBINFO "${RASC_ASM_RELEASE_WITH_DEBUG_INFO}")
+
+set(CMAKE_C_FLAGS_DEBUG "${RASC_C_DEBUG_FLAGS}")
+set(CMAKE_C_FLAGS_MINSIZEREL "${RASC_C_MIN_SIZE_RELEASE_FLAGS}")
+set(CMAKE_C_FLAGS_RELEASE "${RASC_C_RELEASE_FLAGS}")
+set(CMAKE_C_FLAGS_RELWITHDEBINFO "${RASC_C_RELEASE_WITH_DEBUG_INFO}")
+
+set(CMAKE_CXX_FLAGS_DEBUG "${RASC_CXX_DEBUG_FLAGS}")
+set(CMAKE_CXX_FLAGS_MINSIZEREL "${RASC_CXX_MIN_SIZE_RELEASE_FLAGS}")
+set(CMAKE_CXX_FLAGS_RELEASE "${RASC_CXX_RELEASE_FLAGS}")
+set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "${RASC_CXX_RELEASE_WITH_DEBUG_INFO}")
 
 target_compile_options(${PROJECT_NAME}.elf PRIVATE $<$<COMPILE_LANGUAGE:ASM>:${RASC_CMAKE_ASM_FLAGS}>)
 target_compile_options(${PROJECT_NAME}.elf PRIVATE $<$<COMPILE_LANGUAGE:C>:${RASC_CMAKE_C_FLAGS}>)
@@ -124,14 +137,18 @@ target_include_directories(${PROJECT_NAME}.elf
     ${CMAKE_CURRENT_SOURCE_DIR}/ra_cfg/fsp_cfg/bsp
     ${CMAKE_CURRENT_SOURCE_DIR}/ra_gen
     ${CMAKE_CURRENT_SOURCE_DIR}/ra_cfg/fsp_cfg
+    ${CMAKE_CURRENT_SOURCE_DIR}/ra_cfg/aws
     ${CMAKE_CURRENT_SOURCE_DIR}/src
     ${CMAKE_CURRENT_SOURCE_DIR}/ra/fsp/inc
     ${CMAKE_CURRENT_SOURCE_DIR}/ra/fsp/inc/api
     ${CMAKE_CURRENT_SOURCE_DIR}/ra/fsp/inc/instances
+    ${CMAKE_CURRENT_SOURCE_DIR}/ra/fsp/src/rm_freertos_port
+    ${CMAKE_CURRENT_SOURCE_DIR}/ra/aws/FreeRTOS/FreeRTOS/Source/include
     ${CMAKE_CURRENT_SOURCE_DIR}/ra/arm/CMSIS_6/CMSIS/Core/Include
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_BINARY_DIR}/
 )
+
 
 #target_link_directories is for gcc/llvm toolchain, is not suitalbe for ccrh toolchain
 target_link_directories(${PROJECT_NAME}.elf
@@ -159,14 +176,14 @@ add_custom_command(
     TARGET
         ${PROJECT_NAME}.elf
     POST_BUILD
-    COMMAND ${CMAKE_OBJCOPY} ${PROJECT_NAME}.elf -O ihex  ${PROJECT_NAME}.hex
-    COMMENT "Creating Intel Hex file in ${PROJECT_BINARY_DIR}"
+    COMMAND ${CMAKE_OBJCOPY} -O srec ${PROJECT_NAME}.elf ${PROJECT_NAME}.srec
+    COMMENT "Creating S-record file in ${PROJECT_BINARY_DIR}"
 )
+
+set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/configuration.xml)
 
 if (NOT IDE_SUPPORTS_PRE_POST_BUILD_ACTIONS)
 
-
-	set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/configuration.xml)
 
 	if (NOT RASC_GEN_BUNDLE_CMD)
 		set(RASC_GEN_BUNDLE_CMD --gensmartbundle)
@@ -180,9 +197,9 @@ if (NOT IDE_SUPPORTS_PRE_POST_BUILD_ACTIONS)
 	    COMMAND
 	        echo "Running RASC post-build to generate Smart Bundle file for ${PROJECT_NAME}:"
 	    COMMAND
-	        echo ${RASC_EXE_PATH} -nosplash --launcher.suppressErrors ${RASC_GEN_BUNDLE_CMD} --devicefamily ra --compiler LLVMARM --toolchainversion ${CMAKE_C_COMPILER_VERSION} --buildconfiguration ${CMAKE_BUILD_TYPE} ${CMAKE_CURRENT_SOURCE_DIR}/configuration.xml ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.elf 
+	        echo ${RASC_EXE_PATH} -nosplash --launcher.suppressErrors ${RASC_GEN_BUNDLE_CMD} --devicefamily ra --compiler GCC --toolchainversion ${CMAKE_C_COMPILER_VERSION} --buildconfiguration ${CMAKE_BUILD_TYPE} ${CMAKE_CURRENT_SOURCE_DIR}/configuration.xml ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.elf 
 	    COMMAND
-	        ${RASC_EXE_PATH} -nosplash --launcher.suppressErrors ${RASC_GEN_BUNDLE_CMD} --devicefamily ra --compiler LLVMARM --toolchainversion ${CMAKE_C_COMPILER_VERSION} --buildconfiguration ${CMAKE_BUILD_TYPE} ${CMAKE_CURRENT_SOURCE_DIR}/configuration.xml ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.elf  2> rasc_cmd_log.txt
+	        ${RASC_EXE_PATH} -nosplash --launcher.suppressErrors ${RASC_GEN_BUNDLE_CMD} --devicefamily ra --compiler GCC --toolchainversion ${CMAKE_C_COMPILER_VERSION} --buildconfiguration ${CMAKE_BUILD_TYPE} ${CMAKE_CURRENT_SOURCE_DIR}/configuration.xml ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.elf  2> rasc_cmd_log.txt
 	)
 
 	add_custom_target(generate_sbd_${PROJECT_NAME} ALL
